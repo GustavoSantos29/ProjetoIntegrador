@@ -1,0 +1,15 @@
+.footer{
+    display: flex;
+    background-color: var(--azul-ufsm);
+    align-items: center;
+    justify-content: center;  
+    position: relative;
+    width: 80%;
+    height: 20%;
+}
+
+p{
+    color: var(--branco);
+    font-size: 2.5vw;
+
+}

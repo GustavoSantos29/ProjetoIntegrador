@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model Animal {
+  id               Int     @id @default(autoincrement())
+  foto             String
+  nomePopular      String
+  nomeCientifico   String
+  tamanho          String
+  dieta            String
+  comportamento    String
+  reproducao       String
+  habitat          String
+  descricao        String? 
+  reino            String
+  filo             String
+  classe           String
+  ordem            String
+  familia          String
+  genero           String
+  especie          String
+  subclasse        String?  
+  subordem         String?  
+  subfamilia       String?  
+  subgenero        String?  
+  audio            String?  
+  video            String?  
+}
+
+model Article{
+    id               Int     @id @default(autoincrement())
+    nome          String
+    link              String
+}
+
+model Users{
+    id               Int     @id @default(autoincrement())
+    email          String
+    senha         String
+}

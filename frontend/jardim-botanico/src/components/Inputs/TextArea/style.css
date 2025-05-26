@@ -1,0 +1,66 @@
+.textArea-container {
+    position: relative;
+    margin: 10px 0;
+    width: 516px;
+    height: 200px;
+  }
+    
+  .hide {
+    display: none;
+  }
+  
+  .required {
+    position: relative;
+    color: red;
+    font-size: 20px;
+    top: 3px;
+    outline: none;
+    border: none;
+    
+  }
+  
+  .textArea-container .textArea {
+    width: 100%;
+    height: 100%;
+    padding: 25px 10px 6px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: none;
+  }
+  
+  .textArea-container label {
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    background: none;
+    padding: 0 4px;
+    color: #999;
+    font-size: 18px;
+    transition: all 0.2s ease;
+    outline: 0;
+  }
+  
+  .textArea-container .textArea:focus + label,
+  .textArea-container .textArea:not(:placeholder-shown) + label {
+    top: 3px;
+    left: 8px;
+    font-size: 10px;
+    color: var(--azul-ufsm);
+    background: none;
+  }
+  
+  .textArea-container .textArea:focus {
+    font-size: 14px;
+    border-color: #333;
+    outline: 0;
+    background-color: var(--branco);
+  }
+  
+  .textArea-container .textArea:focus + label .required,
+  .textArea-container .textArea:not(:placeholder-shown) + label .required {
+    font-size: 12px;
+    top: 2px;
+  }

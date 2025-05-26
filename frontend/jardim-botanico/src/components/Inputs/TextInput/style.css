@@ -1,0 +1,71 @@
+.input-container {
+  position: relative;
+  margin: 10px 0;
+  max-width: 516px;
+}
+
+.input-container.big, .input.big {
+  width: 100%;
+}
+
+
+.input-container.small, .input.small {
+  width: calc(50% - 8px); 
+}
+
+.hide {
+  display: none;
+}
+
+.required {
+  position: relative;
+  color: red;
+  font-size: 20px;
+  top: 3px;
+  outline: none;
+  border: none;
+}
+
+.input-container .input {
+  width: 100%;
+  padding: 25px 10px 6px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-size: 14px;
+  box-sizing: border-box; /* Importante para o cálculo de width */
+}
+
+.input-container label {
+  position: absolute;
+  left: 10px;
+  top: 13px;
+  background: none;
+  padding: 0 4px;
+  color: #999;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  outline: 0;
+}
+
+.input-container .input:focus + label,
+.input-container .input:not(:placeholder-shown) + label {
+  top: 3px;
+  left: 8px;
+  font-size: 10px;
+  color: var(--azul-ufsm);
+  background: none;
+}
+
+.input-container .input:focus {
+  font-size: 14px;
+  border-color: #333;
+  outline: 0;
+  background-color: var(--branco);
+}
+
+.input-container .input:focus + label .required,
+.input-container .input:not(:placeholder-shown) + label .required {
+  font-size: 12px;
+  top: 2px;
+}
