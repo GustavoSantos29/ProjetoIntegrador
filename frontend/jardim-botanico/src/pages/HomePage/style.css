@@ -5,22 +5,18 @@
     justify-content: center;
 }
 
-.input-section {
-    align-items: center;
+.home-main{
     display: flex;
     flex-direction: column;
-    background-color: blue;
-    width: 70vw;
-    padding: 16px; /* Adiciona um padding para não colar nas bordas */
-    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    background-color: var(--azul-ufsm);
+    max-width: 80vw;
 }
 
-.sub-input {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Centraliza se os inputs não preencherem a linha */
-    gap: 16px; /* Espaço entre os inputs */
-    width: 100%;
-    max-width: 516px; /* (250px * 2) + (16px gap) = 516px */
-    margin: 0 auto; /* Centraliza o container */
+.home-main h1{
+    color: var(--branco);
 }

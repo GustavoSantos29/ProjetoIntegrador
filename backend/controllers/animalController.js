@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const path = require('path');
 
 // Criar novo animal
 exports.createAnimal = async (req, res) => {
@@ -60,3 +61,45 @@ exports.deleteAnimal = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// salva o caminho da imagem
+  exports.uploadImagem = async (req, res) => {
+    if (!req.file) return res.status(400).json({ error: 'Nenhum arquivo enviado' });
+    const id = parseInt(req.params.id);
+    const fileName = req.file.filename;
+
+    try {
+      // Atualiza o campo 'foto' no animal
+      const updatedAnimal = await prisma.animal.update({
+        where: { id },
+        data: { foto: fileName },
+      });
+  
+      const caminho = `/imagens/${fileName}`;
+      res.json({ caminho, animal: updatedAnimal });
+    } catch (error) {
+      console.error('Erro ao atualizar imagem no banco:', error);
+      res.status(500).json({ error: 'Erro ao atualizar o animal com a imagem' });
+    }
+  };
+
+  // salva o caminho do som
+  exports.uploadSom = async (req, res) => {
+    if (!req.file) return res.status(400).json({ error: 'Nenhum arquivo enviado' });
+    const id = parseInt(req.params.id);
+    const fileName = req.file.filename;
+
+    try {
+      // Atualiza o campo 'som' no animal
+      const updatedAnimal = await prisma.animal.update({
+        where: { id },
+        data: { audio: fileName },
+      });
+  
+      const caminho = `/sons/${fileName}`;
+      res.json({ caminho, animal: updatedAnimal });
+    } catch (error) {
+      console.error('Erro ao atualizar som no banco:', error);
+      res.status(500).json({ error: 'Erro ao atualizar o animal com o som' });
+    }
+  };

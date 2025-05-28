@@ -1,8 +1,9 @@
-.textArea-container {
+.text-area-container {
     position: relative;
     margin: 10px 0;
     width: 516px;
     height: 200px;
+    max-width: 100%;
   }
     
   .hide {
@@ -19,7 +20,7 @@
     
   }
   
-  .textArea-container .textArea {
+  .text-area-container .text-area {
     width: 100%;
     height: 100%;
     padding: 25px 10px 6px;
@@ -31,20 +32,19 @@
     resize: none;
   }
   
-  .textArea-container label {
+  .text-area-container label {
     position: absolute;
     left: 10px;
     top: 13px;
     background: none;
     padding: 0 4px;
-    color: #999;
     font-size: 18px;
     transition: all 0.2s ease;
     outline: 0;
   }
   
-  .textArea-container .textArea:focus + label,
-  .textArea-container .textArea:not(:placeholder-shown) + label {
+  .text-area-container .text-area:focus + label,
+  .text-area-container .text-area:not(:placeholder-shown) + label {
     top: 3px;
     left: 8px;
     font-size: 10px;
@@ -52,15 +52,19 @@
     background: none;
   }
   
-  .textArea-container .textArea:focus {
+  .text-area-container .text-area:focus {
     font-size: 14px;
-    border-color: #333;
     outline: 0;
-    background-color: var(--branco);
   }
   
-  .textArea-container .textArea:focus + label .required,
-  .textArea-container .textArea:not(:placeholder-shown) + label .required {
+  .text-area-container .text-area:focus + label .required,
+  .text-area-container .text-area:not(:placeholder-shown) + label .required {
     font-size: 12px;
     top: 2px;
+  }
+
+  .text-area-container  .text-area-error{
+    width: 100%;
+    transition: all 0.2s ease;
+    outline: 3px solid red;
   }

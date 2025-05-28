@@ -1,11 +1,27 @@
 import React from 'react'
 import './style.css'
-
-const TextArea = ({ label = '', required = false}) => {
+/** 
+@param label
+@param required
+@param value
+@param onChange
+@param showError
+**/
+const TextArea = ({
+  label = '',
+  required = false,
+  value = ' ',
+  onChange,
+  showError = false,
+  id = ''}) => {
   return (
-    <div className='textArea-container'>
-      <textarea className='textArea' placeholder=' '></textarea>
-        <label className='label'>{label} <span className={required? 'required':'hide'}>*</span></label>
+    <div className='text-area-container'>
+      <textarea className={`text-area ${showError ? 'text-area-error' : ''}`}
+        id={id}
+        placeholder=' '
+        value={value}
+        onChange={onChange}></textarea>
+        <label htmlFor={id} className='label'>{label} <span className={required? 'required':'hide'}>*</span></label>
       </div>
   )
 }

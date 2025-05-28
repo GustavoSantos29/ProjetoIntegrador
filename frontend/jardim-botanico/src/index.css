@@ -18,11 +18,15 @@ body{
   margin: 0px;
 }
 
+label{
+  cursor:text;
+}
+
 h1{
     color: var(--azul-ufsm);
 }
 
-h2{
+p,h2{
   color: var(--branco);
 }
 
