@@ -5,6 +5,10 @@
   --cinza: #cccccc;
   --cinza-escuro:#888888;
   --azul-focus: #b8dcf3;
+  --verde-claro: rgba(144, 238, 144, 0.8);
+  --verde-escuro: #1a5031;
+  --vermelho-claro: rgba(255, 99, 71, 0.8);
+  --vermelho-escuro: #790909;
   font-family:Arial, Helvetica, sans-serif;
 }
 

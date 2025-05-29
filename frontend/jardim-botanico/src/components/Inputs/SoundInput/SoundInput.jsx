@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import SoundInputSVG from '../../../assets/svg/SoundInputSVG';
 
-const SoundInput = ({ onFileSelect, }) => {
+const SoundInput = ({ onFileSelect, resetTrigger }) => {
   const [fileName, setFileName] = useState(null);
+
+  useEffect(() => {
+    setFileName(null);
+  }, [resetTrigger]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith('audio/')) {
       setFileName(file.name);
-      onFileSelect(file); // envia o arquivo para o componente pai
+      onFileSelect(file);
     } else {
       setFileName(null);
       onFileSelect(null);

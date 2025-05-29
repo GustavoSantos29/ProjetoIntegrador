@@ -1,0 +1,32 @@
+.toast {
+    display: flex;
+    position: fixed;
+    text-align: center;
+    width: 200px;
+    height: 100px;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    top: 1rem;
+    right: 1rem;
+    color: black;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    pointer-events: none;
+    z-index: 9999;
+    background-color: var(--verde-claro);
+    border: 1px solid var(--verde-escuro);
+  }
+  
+  .toast.success {
+    background-color: var(--verde-claro);
+    border: 2px solid var(--verde-escuro);
+    color: var(--verde-escuro);
+  }
+  
+  .toast.warning {
+    background-color: var(--vermelho-claro);
+    border: 2px solid var(--vermelho-escuro);
+    color: var(--vermelho-escuro);
+  }
+  

@@ -69,5 +69,6 @@
 
 .input-container .input-error{
   transition: all 0.2s ease;
-  outline: 3px solid red;
+  outline: 2px solid red;
+  outline-style: groove;
 }
