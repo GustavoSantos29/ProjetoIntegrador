@@ -9,8 +9,8 @@ const AnimalViewPage = () => {
     const { id } = useParams();
     return (
         <div className='page-container'>
+                <HeaderAdmin back={'/'}/>
             <div className="page-content">
-            <HeaderAdmin back={'/'}/>
             <div className='view-animal-main'>
                 <AnimalDispay id={id}/>
             </div>

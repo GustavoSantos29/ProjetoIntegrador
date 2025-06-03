@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import TextInput from '../Inputs/TextInput/TextInput';
-import ImageInput from '../Inputs/ImageInput/ImageInput';
-import TextArea from '../Inputs/TextArea/TextArea';
-import SoundInput from '../Inputs/SoundInput/SoundInput';
-import Button from '../Button/Button';
-import Toast from '../Toast/Toast';
-import './style.css';
+import TextInput from '../../Inputs/TextInput/TextInput';
+import ImageInput from '../../Inputs/ImageInput/ImageInput';
+import TextArea from '../../Inputs/TextArea/TextArea';
+import SoundInput from '../../Inputs/SoundInput/SoundInput';
+import Button from '../../Button/Button';
+import Toast from '../../Toast/Toast';
+import '../style.css'
 
-const Form = () => {
+const CreateAnimalForm = () => {
   const [toast, setToast] = useState({ visible: false, type: '', message: '' });
   const [imageFile, setImageFile] = useState(null);
   const [soundFile, setSoundFile] = useState(null);
@@ -169,4 +169,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default CreateAnimalForm;

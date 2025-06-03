@@ -42,32 +42,30 @@ hr{
 }
 
 .dropdown-subSection {
-    position: relative;
-    width: 60vw; 
-    padding: 0px 50px; 
+    height: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: height 0.3s ease, transform 0.3s ease;
+    width: 60vw;
+    padding: 0px 50px;
     background-color: var(--cinza);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    transform-origin: top;
-    transform: scaleY(0);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
     box-shadow: inset 0px 4px 3px var(--cinza-escuro);
-    overflow: hidden;
-  }
-  
-  .dropdown-subSection.show {
-    max-height: 500px; 
-    opacity: 1;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
-    transform: scaleY(1);
-    opacity: 1;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-subSection.show {
+    position: relative;
+    top: -5px;
+    height: fit-content;
+    transform: translateY(0);
+    transition: height 0.3s ease, transform 0.3s ease;
 }
   .dropdown-item{
     display: flex;
     gap: 20px;
     align-items: center;
+    cursor: pointer;
   }
   
   

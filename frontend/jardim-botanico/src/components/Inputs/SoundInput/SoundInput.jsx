@@ -3,12 +3,20 @@ import './style.css';
 import SoundInputSVG from '../../../assets/svg/SoundInputSVG';
 import Pencil from '../../../assets/svg/Pencil';
 
-const SoundInput = ({ onFileSelect, resetTrigger }) => {
+const SoundInput = ({ onFileSelect, resetTrigger , file}) => {
   const [fileName, setFileName] = useState(null);
+
 
   useEffect(() => {
     setFileName(null);
   }, [resetTrigger]);
+
+    useEffect(() => {
+      if (file != null) {
+        setFileName(`/sons/${file}`);
+      }
+    }, [file])
+  
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];

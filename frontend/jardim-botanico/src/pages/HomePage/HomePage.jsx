@@ -1,7 +1,6 @@
 import React from 'react'
 import HeaderAdmin from '../../components/AdminHeader/HeaderAdmin'
 import '../AnimalPages/CreatePage/style.css'
-import Form from '../../components/Forms/Form'
 import FooterAdmin from '../../components/AdminFooter/FooterAdim'
 const HomePage = () => {
   return (

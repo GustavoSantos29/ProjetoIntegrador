@@ -24,12 +24,11 @@ export default function AnimalList() {
   }, []);
 
   function handleVisualizar(id) {
-    navigate(`/animais/${id}`);
+    navigate(`/animal/${id}`);
   }
 
   function handleEditar(id) {
-    console.log("EDITAR", id);
-    // navigate(`/animais/editar/${id}`);
+      navigate(`/animal/edit/${id}`);
   }
 
   async function handleExcluir(id) {
