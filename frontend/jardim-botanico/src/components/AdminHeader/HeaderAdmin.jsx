@@ -2,10 +2,10 @@ import React from 'react'
 import './style.css'
 import Arrow from '../../assets/svg/arrow';
 
-const HeaderAdmin = ({back}) => {
+const HeaderAdmin = ({back= null}) => {
   const goBack = () => {
     if (back) {
-      return <a href="https://www.youtube.com/watch?v=jFd0-gCSzWg.com"><Arrow/></a>;
+      return <a href={back}><Arrow/></a>;
     } else {
       return;
     }
@@ -15,8 +15,8 @@ const HeaderAdmin = ({back}) => {
       <div className="left">
         {goBack(back)}
       </div>    
-        <p>Jardim botanico UFSM</p>
-      
+        <h2>Jardim botanico UFSM</h2>
+        <img src='../images/logo.png' width="42" height="42" className='header-img'/>
     </div>
   );
 };

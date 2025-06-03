@@ -22,6 +22,7 @@ const Form = () => {
     comportamento: '',
     reproducao: '',
     habitat: '',
+    descricao: '',
     reino: '',
     filo: '',
     classe: '',
@@ -47,20 +48,16 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const requiredFields = [
       'nomePopular', 'nomeCientifico', 'tamanho', 'dieta', 'comportamento',
       'reproducao', 'habitat', 'reino', 'filo', 'classe', 'ordem',
       'familia', 'genero', 'especie'
     ];
-
     const newErrors = requiredFields.reduce((acc, field) => {
       acc[field] = formData[field].trim() === '';
       return acc;
     }, {});
-
     newErrors.foto = !imageFile;
-
     if (Object.values(newErrors).some(Boolean)) {
       setErrors(newErrors);
       showToast('warning', 'Por favor, preencha todos os campos obrigatórios!');
@@ -73,9 +70,7 @@ const Form = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-
-        if (!response.ok) throw new Error('Erro ao criar animal');
-
+      if (!response.ok) throw new Error('Erro ao criar animal');
       const { id } = await response.json();
 
       const formImage = new FormData();
@@ -84,7 +79,6 @@ const Form = () => {
         method: 'POST',
         body: formImage
       });
-
       if (soundFile) {
         const formAudio = new FormData();
         formAudio.append('som', soundFile);
@@ -93,7 +87,6 @@ const Form = () => {
           body: formAudio
         });
       }
-
       showToast('success', 'Animal criado com sucesso!');
 
       setFormData({
@@ -104,6 +97,7 @@ const Form = () => {
         comportamento: '',
         reproducao: '',
         habitat: '',
+        descricao: '',
         reino: '',
         filo: '',
         classe: '',
@@ -116,7 +110,6 @@ const Form = () => {
         subgenero: '',
         especie: ''
       });
-
       setImageFile(null);
       setSoundFile(null);
       setResetImageKey((prev) => prev + 1);
@@ -149,7 +142,7 @@ const Form = () => {
           <TextInput id="comportamento" label="Comportamento" value={formData.comportamento} required onChange={(e) => handleChange('comportamento', e.target.value)} showError={errors.comportamento} />
           <TextInput id="reproducao" label="Reprodução" value={formData.reproducao} required onChange={(e) => handleChange('reproducao', e.target.value)} showError={errors.reproducao} />
           <TextInput id="habitat" label="Habitat" value={formData.habitat} required onChange={(e) => handleChange('habitat', e.target.value)} showError={errors.habitat} />
-
+          <TextArea id="descricao" label="Descrição" value={formData.descricao} onChange={(e) => handleChange('descricao', e.target.value)}/>
           <h2>Taxonomia</h2>
           <div className="sub-input-section">
             <TextInput id="reino" label="Reino" value={formData.reino} required onChange={(e) => handleChange('reino', e.target.value)} showError={errors.reino} />

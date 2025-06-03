@@ -1,0 +1,60 @@
+.animal-view-page {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+}
+  
+.animal-view-container {
+  padding: 30px 30px;
+  max-width: 800px;
+  width: 100%;
+  background-color: var(--branco);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+  
+.animal-view-image {
+  height: 250px;
+}
+  
+  
+.animal-view-data {
+  padding: 20px;
+  line-height: 2;
+}
+
+.animal-view-data p{
+  font-size: 12px;
+}
+
+.animal-view-data strong{
+  font-size: 14px;
+}
+
+
+  
+.animal-info {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+  
+.animal-info p {
+  margin: 6px 0;
+}
+  
+.animal-audio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .animal-view-page {
+    width: 100vw;
+  }
+}

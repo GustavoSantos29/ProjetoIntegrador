@@ -18,7 +18,7 @@ const ImageDisplay = ({ image, name }) => {
   }
   return (
     <div className='image-container'>
-      <img src={image} alt={'Foto do animal' + name} className='image-display' />
+      <img src={`/imagens/${image}`} alt={'Foto do animal' + name} className='image-display' />
       <div className='name-bg'>
         <p className='name'>{formatName(name)}</p>
         </div>  

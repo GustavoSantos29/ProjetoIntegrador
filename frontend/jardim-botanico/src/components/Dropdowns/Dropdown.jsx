@@ -2,11 +2,15 @@ import React from 'react'
 import './style.css'
 import Triangle from '../../assets/svg/Triangle'
 import { useState } from 'react'
+import EditIcon from '../../assets/svg/EditIcon'
 /**
  * 
  * @param name
+ * @param onView
+ * @param onEdit
+ * @param onDelete
  */
-const Dropdown = ({ name }) => {
+const Dropdown = ({ name, onView, onDelete, onEdit }) => {
   const [dropdownState, setState] = useState(false)
   const handleState =(e)=> {
     if (dropdownState == false) {
@@ -27,9 +31,20 @@ const Dropdown = ({ name }) => {
       </div>
       </div>
       <div className={`dropdown-subSection ${dropdownState ? "show" : ""}`}>
-        <p>Editar animal</p>
-        <p>Excluir animal</p>
-        <p>Gerar Qrcode</p>
+      <div className="dropdown-item" onClick={onEdit}>
+          <p>Editar animal</p>
+          {<EditIcon />}
+        </div>
+        <hr />
+        <div className="dropdown-item" onClick={onDelete}>
+          <p>Excluir animal</p>
+        </div>
+      <hr />
+        <div className="dropdown-item" onClick={onView}>
+          <p>Gerar QRCode</p>
+
+        </div>
+
       </div>
 
       </div>

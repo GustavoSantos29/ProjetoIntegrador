@@ -8,6 +8,11 @@
     color: var(--azul-ufsm);
 }
 
+.custom-button:hover{
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
 .submit{
     background-color: var(--azul-ufsm);
     color: var(--branco);

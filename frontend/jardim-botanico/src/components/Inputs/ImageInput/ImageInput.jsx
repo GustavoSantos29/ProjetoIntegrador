@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './style.css';
 import ImageInputSVG from '../../../assets/svg/ImageInputSVG';
-
+import Pencil from '../../../assets/svg/Pencil';
 const ImageInput = ({ onFileSelect, showError, resetTrigger }) => {
   const [preview, setPreview] = useState(null);
   const inputRef = useRef(null);
@@ -27,9 +27,15 @@ const ImageInput = ({ onFileSelect, showError, resetTrigger }) => {
   }, [resetTrigger]);
 
   return (
+    <>
     <label className={`upload-image-container ${showError ? 'image-error' : ''}`}>
-      {preview ? (
-        <img src={preview} alt="Prévia" className="image-preview" />
+        {preview ? (
+          <div className='uploaded'>
+            <img src={preview} alt="Prévia" className="image-preview" />
+          <div className='edit-image'>
+          <Pencil color='var(--azul-ufsm)'/>
+            </div>
+            </div>
       ) : (
         <>
           <ImageInputSVG width={80} height={80} color='var(--azul-ufsm)' />
@@ -43,7 +49,9 @@ const ImageInput = ({ onFileSelect, showError, resetTrigger }) => {
         onChange={handleFileChange}
         style={{ display: 'none' }}
       />
-    </label>
+      </label>
+       
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import SoundInputSVG from '../../../assets/svg/SoundInputSVG';
+import Pencil from '../../../assets/svg/Pencil';
 
 const SoundInput = ({ onFileSelect, resetTrigger }) => {
   const [fileName, setFileName] = useState(null);
@@ -25,6 +26,9 @@ const SoundInput = ({ onFileSelect, resetTrigger }) => {
       {fileName ? (
         <div className="sound-preview">
           <span>{fileName}</span>
+          <div className='sound-edit'>
+            <Pencil color='var(--azul-ufsm)'/>
+            </div>
         </div>
       ) : (
         <>

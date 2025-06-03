@@ -1,6 +1,6 @@
 :root {
   --branco: #E1E4FF;
-  --preto: #111111;
+  --preto: #222222;
   --azul-ufsm: #005386;
   --cinza: #cccccc;
   --cinza-escuro:#888888;
@@ -10,6 +10,9 @@
   --vermelho-claro: rgba(255, 99, 71, 0.8);
   --vermelho-escuro: #790909;
   font-family:Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
     
@@ -20,6 +23,7 @@ body{
   background-color:  var(--branco);
   padding: 0px;
   margin: 0px;
+
 }
 
 label{
@@ -29,28 +33,30 @@ label{
 h1{
     color: var(--azul-ufsm);
 }
-
-p,h2{
+h2{
   color: var(--branco);
 }
-
-.input-zone{
-  background-color: var(--azul-ufsm);
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.test-area{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-radius: 5px;
-  border: 2px solid gray;
-  padding: 20px;
-  
+p{
+  color: var(--preto);
 }
 
+.hide{
+  display: none;
+}
+
+.page-container{
+  min-height: 100vh; /* Ocupa pelo menos a altura da tela */
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  flex: 1;
+}
 
 
 

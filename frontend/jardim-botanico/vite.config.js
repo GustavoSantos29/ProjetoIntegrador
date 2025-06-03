@@ -10,6 +10,14 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
       },
+      '/imagens': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+      '/sons': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      }
     },
   },
 })

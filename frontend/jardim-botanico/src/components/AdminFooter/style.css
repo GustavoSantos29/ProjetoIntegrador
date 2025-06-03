@@ -4,6 +4,12 @@
     align-items: center;
     justify-content: center;  
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 20%;
+
+}
+
+.footer-img{
+    position: absolute;
+    margin-left:90vw ;
 }

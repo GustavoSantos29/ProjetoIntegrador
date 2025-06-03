@@ -16,8 +16,11 @@
     overflow: hidden;
     position: relative;
   }
-  
 
+  .upload-sound-container:hover{
+    opacity: 0.8;
+    transition: 0.3s ease;
+  }
   
   .upload-sound-container .sound-preview {
     width: 100%;
@@ -25,3 +28,8 @@
     object-fit: cover;
   }
   
+  .sound-edit{
+    position: relative;
+    left: 85px;
+    top: 10px;
+  }

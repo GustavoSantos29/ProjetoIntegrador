@@ -1,16 +1,21 @@
 import React from 'react'
 import HeaderAdmin from '../../components/AdminHeader/HeaderAdmin'
-import './style.css'
+import '../AnimalPages/CreatePage/style.css'
 import Form from '../../components/Forms/Form'
 import FooterAdmin from '../../components/AdminFooter/FooterAdim'
 const HomePage = () => {
   return (
-    <div className='home-container'>
+    <div className='page-container'>
     <HeaderAdmin />
-    <div className='home-main'>
-      <h1>Testes</h1>
-        <Form/>
+    <div className='page-content'>
+        <h1>Testes</h1>
+        <a href="/create">Create</a>
+        <hr />
+        <a href="/list">List</a>
+        <hr />
+        <a href="/animal/72">View</a>
       </div>
+
       <FooterAdmin/>
       </div>
   )

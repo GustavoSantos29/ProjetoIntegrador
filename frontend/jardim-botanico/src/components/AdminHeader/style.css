@@ -12,8 +12,8 @@
     justify-content: center;
     left: 20px;
 }
-p{
-    color: var(--branco);
-    font-size: 2.5vw;
 
+.header-img{
+    position: absolute;
+    margin-left:90vw ;
 }

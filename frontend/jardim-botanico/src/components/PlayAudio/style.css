@@ -1,0 +1,12 @@
+.play-audio-container{
+    display: flex;
+    cursor: pointer;
+    background-color: var(--cinza);
+    padding: 10px 10px 0px;
+    border-radius: 5px;
+}
+
+.play-audio-label{
+    
+    margin-left: 8px;
+}

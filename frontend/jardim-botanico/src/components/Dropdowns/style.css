@@ -5,8 +5,7 @@
     background-color: var(--branco);
     border-radius: 5px;
     padding: 0px 50px;
-    width: 700px;
-    max-width: 700px;
+    width: 60vw;
     height: 70px;
    cursor: pointer;
 }
@@ -27,6 +26,12 @@ p{
   
 }
 
+hr{
+    border: none;
+    margin-top: -5px;
+    border-top: 1px solid var(--cinza-escuro);
+}
+
 .default{
     transition: 200ms ease;
 }
@@ -38,25 +43,31 @@ p{
 
 .dropdown-subSection {
     position: relative;
-    top: -3px;
-    width: 700px; 
+    width: 60vw; 
     padding: 0px 50px; 
     background-color: var(--cinza);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     box-shadow: inset 0px 4px 3px var(--cinza-escuro);
     overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: max-height 0.2s ease;
   }
   
   .dropdown-subSection.show {
-    max-height: 500px; /* ajuste conforme o conteúdo interno */
+    max-height: 500px; 
     opacity: 1;
-    transform: translateY(0);
-    transition: max-height 0.5s ease;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    transform: scaleY(1);
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+  .dropdown-item{
+    display: flex;
+    gap: 20px;
+    align-items: center;
   }
   
   
