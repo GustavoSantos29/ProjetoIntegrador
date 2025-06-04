@@ -1,43 +1,61 @@
-
-.list-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    background-color: var(--azul-ufsm);
-    height: 80vh;
-    width: 80vw;
-    overflow-y: auto;
-
+.list-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 2vh 0;
+  padding: 1vh 0;
+  background-color: var(--azul-ufsm);
+  height: 70vh;
+  width: 70vw;
+  overflow-y: auto;
+  border-radius: 0.4rem;
 }
 
-.list-main-content{
-    width: 97%; 
-    overflow-y: auto;
-    padding-right: 8px;
-    overflow-x: hidden;
-    text-align: center;
+.list-main-content {
+  width: 97%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem;
+  text-align: center;
 }
 
-.list-main h1{
-    color: var(--branco);
+.list-main h1 {
+  color: var(--branco);
 }
 
 .list-main-content::-webkit-scrollbar {
-    width: 6px;
-    
-  }
-  
-  .list-main-content::-webkit-scrollbar-thumb {
-    background-color: var(--cinza);
-    border-radius: 10px;
-  }
-  
-  .list-main-content::-webkit-scrollbar-track {
-    background: var(--cinza-escuro);
-    border-radius: 10px;
-  }
+  width: 0.4rem;
+}
+
+.list-main-content::-webkit-scrollbar-thumb {
+  background-color: var(--cinza);
+  border-radius: 0.6rem;
+}
+
+.list-main-content::-webkit-scrollbar-track {
+  background: var(--cinza-escuro);
+  border-radius: 0.6rem;
+}
+
+.list-name {
+  position: absolute;
+  top: 10vh;
+  left: calc(17vw - 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--azul-ufsm);
+  border-top-right-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  color: var(--branco);
+  font-weight: bold;
+  z-index: 99;
+}
+
+.list-name span {
+  font-size: 2rem;
+  color: var(--branco);
+}

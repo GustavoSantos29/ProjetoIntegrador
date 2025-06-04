@@ -1,41 +1,38 @@
-.create-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    background-color: var(--azul-ufsm);
-    height: 70vh;
-    overflow-y: auto;
-    width: 80%;
+.create-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh 0;
+  padding: 1vh 0;
+  background-color: var(--azul-ufsm);
+  height: 70vh;
+  overflow-y: auto;
+  width: 80vw;
 }
 
-.create-main-content{
-    width: 97%; 
-    overflow-y: auto;
-    padding-right: 8px;
-    overflow-x: hidden;
-    text-align: center;
+.create-main-content {
+  width: 97%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem;
+  text-align: center;
 }
 
-.create-main h1{
-    color: var(--branco);
+.create-main h1 {
+  color: var(--branco);
 }
 
 .create-main-content::-webkit-scrollbar {
-    width: 6px;
-    
-  }
-  
-  .create-main-content::-webkit-scrollbar-thumb {
-    background-color: var(--cinza);
-    border-radius: 10px;
-  }
-  
-  .create-main-content::-webkit-scrollbar-track {
-    background: var(--cinza-escuro);
-    border-radius: 10px;
-  }
+  width: 0.4rem;
+}
+
+.create-main-content::-webkit-scrollbar-thumb {
+  background-color: var(--cinza);
+  border-radius: 0.6rem;
+}
+
+.create-main-content::-webkit-scrollbar-track {
+  background: var(--cinza-escuro);
+  border-radius: 0.6rem;
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import Arrow from '../../assets/svg/arrow';
+import Arrow from '../../assets/svg/Arrow';
 import logo from '../../assets/images/logo.png'
 const HeaderAdmin = ({back= null}) => {
   const goBack = () => {

@@ -1,11 +1,10 @@
-
-.view-animal-main{
+.view-animal-main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin: 2vh 0;
+    padding-bottom: 2vh;
     max-width: 100vw;
-}
+  }
+  

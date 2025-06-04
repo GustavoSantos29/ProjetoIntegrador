@@ -1,0 +1,30 @@
+.modal-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(3px);
+    z-index: 10000000;
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: clamp(280px, 40vw, 500px);
+    height: clamp(200px, 40vh, 400px);
+    background-color: var(--azul-ufsm);
+    border-radius: 5px;
+    color: var(--branco);
+  }
+  
+  .modal-buttons {
+    display: flex;
+    margin-top: 5%;
+    gap: 25px;
+  }
+  

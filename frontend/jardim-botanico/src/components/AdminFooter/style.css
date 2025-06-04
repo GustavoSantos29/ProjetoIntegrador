@@ -1,15 +1,15 @@
-.footer{
+.footer {
     display: flex;
     background-color: var(--azul-ufsm);
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     position: relative;
     width: 100vw;
-    height: 20%;
-
-}
-
-.footer-img{
+    height: 8vh;
+  }
+  
+  .footer-img {
     position: absolute;
-    margin-left:90vw ;
-}
+    margin-left: 56.25vw;
+  }
+  

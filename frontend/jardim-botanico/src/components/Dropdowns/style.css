@@ -1,72 +1,71 @@
-.dropdown-container{
+.dropdown-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--branco);
     border-radius: 5px;
-    padding: 0px 50px;
+    padding: 0 3.125vw;
     width: 60vw;
-    height: 70px;
-   cursor: pointer;
-}
-
-p{
-    color: #000;
-    font-size: 20px;
-}
-
-.dropdown-left p{
-    color: #000;
-    font-size: 24px;
-}
-
-.dropdown-righ{
-    position: relative;
-    transform: rotate(90deg);
-  
-}
-
-hr{
-    border: none;
-    margin-top: -5px;
-    border-top: 1px solid var(--cinza-escuro);
-}
-
-.default{
-    transition: 200ms ease;
-}
-
-.active{
-    transform: rotate(-90deg);
-    transition: 0.3s ease;
-}
-
-.dropdown-subSection {
-    height: 0;
-    overflow: hidden;
-    transform: translateY(-10px);
-    transition: height 0.3s ease, transform 0.3s ease;
-    width: 60vw;
-    padding: 0px 50px;
-    background-color: var(--cinza);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    box-shadow: inset 0px 4px 3px var(--cinza-escuro);
-}
-
-.dropdown-subSection.show {
-    position: relative;
-    top: -5px;
-    height: fit-content;
-    transform: translateY(0);
-    transition: height 0.3s ease, transform 0.3s ease;
-}
-  .dropdown-item{
-    display: flex;
-    gap: 20px;
-    align-items: center;
+    height: 4.375rem;
     cursor: pointer;
   }
   
+  p {
+    color: #000;
+    font-size: 1.25rem;
+  }
   
+  .dropdown-left p {
+    color: #000;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .dropdown-right {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  hr {
+    border: none;
+    margin-top: -0.3125rem;
+    border-top: 1px solid var(--cinza-escuro);
+  }
+  
+  .default {
+    transition: 200ms ease;
+  }
+  
+  .active {
+    transform: rotate(-90deg);
+    transition: 0.3s ease;
+  }
+  
+  .dropdown-subSection {
+    height: 0;
+    overflow: hidden;
+    transform: translateY(-0.3125rem);
+    transition: height 0.3s ease, transform 0.3s ease;
+    width: 60vw;
+    padding: 0 3.125vw;
+    background-color: var(--cinza);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: inset 0px 0.25rem 0.1875rem var(--cinza-escuro);
+  }
+  
+  .dropdown-subSection.show {
+    position: relative;
+    top: -0.3125rem;
+    height: fit-content;
+    transform: translateY(0);
+    transition: height 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dropdown-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    cursor: pointer;
+  }
   

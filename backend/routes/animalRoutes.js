@@ -13,4 +13,9 @@ router.delete('/:id', animalController.deleteAnimal);
 router.post('/:id/upload-imagem', upload.single('imagem'), animalController.uploadImagem);
 router.post('/:id/upload-som', upload.single('som'), animalController.uploadSom);
 
+//Deletes
+router.delete('/:id/delete-imagem', animalController.deleteImagem);
+router.delete('/:id/delete-som', animalController.deleteSom);
+
+
 module.exports = router;

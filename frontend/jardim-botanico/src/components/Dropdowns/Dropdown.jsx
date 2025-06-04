@@ -3,6 +3,7 @@ import './style.css'
 import Triangle from '../../assets/svg/Triangle'
 import { useState } from 'react'
 import EditIcon from '../../assets/svg/EditIcon'
+import DeleteIcon from '../../assets/svg/DeleteIcon'
 /**
  * 
  * @param name
@@ -38,10 +39,11 @@ const Dropdown = ({ name, onView, onDelete, onEdit }) => {
         <hr />
         <div className="dropdown-item" onClick={onDelete}>
           <p>Excluir animal</p>
+          {<DeleteIcon/>}
         </div>
       <hr />
         <div className="dropdown-item" onClick={onView}>
-          <p>Gerar QRCode</p>
+          <p>Visualizar animal</p>
 
         </div>
 

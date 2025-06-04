@@ -1,16 +1,17 @@
 .input-container {
   position: relative;
-  margin: 10px 0;
-  max-width: 516px;
+  margin: 0.625rem 0;
+  max-width: 32.25rem;
 }
 
-.input-container.big, .input.big {
+.input-container.big,
+.input.big {
   width: 100%;
 }
 
-
-.input-container.small, .input.small {
-  width: calc(50% - 8px); 
+.input-container.small,
+.input.small {
+  width: calc(50% - 0.5rem);
 }
 
 .hide {
@@ -20,55 +21,55 @@
 .required {
   position: relative;
   color: red;
-  font-size: 20px;
-  top: 3px;
+  font-size: 1.25rem;
+  top: 0.1875rem;
   outline: none;
   border: none;
 }
 
 .input-container .input {
   width: 100%;
-  padding: 25px 10px 6px;
-  border-radius: 4px;
+  padding: 1.5625rem 0.625rem 0.375rem;
+  border-radius: 0.25rem;
   outline: none;
   border: none;
-  font-size: 14px;
-  box-sizing: border-box; 
+  font-size: 0.875rem;
+  box-sizing: border-box;
 }
 
 .input-container label {
   position: absolute;
-  left: 10px;
-  top: 13px;
+  left: 0.625rem;
+  top: 0.8125rem;
   background: none;
-  padding: 0 4px;
-  font-size: 18px;
+  padding: 0 0.25rem;
+  font-size: 1.125rem;
   transition: all 0.2s ease;
   outline: 0;
 }
 
 .input-container .input:focus + label,
 .input-container .input:not(:placeholder-shown) + label {
-  top: 3px;
-  left: 8px;
-  font-size: 10px;
+  top: 0.1875rem;
+  left: 0.5rem;
+  font-size: 0.625rem;
   color: var(--azul-ufsm);
   background: none;
 }
 
 .input-container .input:focus {
-  font-size: 14px;
+  font-size: 0.875rem;
   outline: 0;
 }
 
 .input-container .input:focus + label .required,
 .input-container .input:not(:placeholder-shown) + label .required {
-  font-size: 12px;
-  top: 2px;
+  font-size: 0.75rem;
+  top: 0.125rem;
 }
 
-.input-container .input-error{
+.input-container .input-error {
   transition: all 0.2s ease;
-  outline: 2px solid red;
+  outline: 0.125rem solid red;
   outline-style: groove;
 }

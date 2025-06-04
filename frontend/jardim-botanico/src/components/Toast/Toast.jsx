@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './style.css';
 
 export default function Toast({ type = 'success', message = '', visible, onClose }) {
+  
   useEffect(() => {
     if (!visible) return;
 

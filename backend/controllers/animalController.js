@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const path = require('path');
+const fs = require('fs');
 
 // Criar novo animal
 exports.createAnimal = async (req, res) => {
@@ -101,5 +102,48 @@ exports.deleteAnimal = async (req, res) => {
     } catch (error) {
       console.error('Erro ao atualizar som no banco:', error);
       res.status(500).json({ error: 'Erro ao atualizar o animal com o som' });
+    }
+  };
+
+  //deleta imagem local
+  exports.deleteImagem = (req, res) => {
+    const id = req.params.id;
+    const pasta = path.join(__dirname, '..', 'public', 'imagens');
+  
+    try {
+      const arquivos = fs.readdirSync(pasta);
+      const arquivo = arquivos.find(arquivo => arquivo.startsWith(id));
+  
+      if (!arquivo) {
+        return res.status(404).json({ error: 'Imagem não encontrada' });
+      }
+  
+      fs.unlinkSync(path.join(pasta, arquivo));
+      res.json({ message: 'Imagem deletada com sucesso' });
+  
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Erro ao deletar imagem' });
+    }
+  };
+  
+  exports.deleteSom = (req, res) => {
+    const id = req.params.id;
+    const pasta = path.join(__dirname, '..', 'public', 'sons');
+  
+    try {
+      const arquivos = fs.readdirSync(pasta);
+      const arquivo = arquivos.find(arquivo => arquivo.startsWith(id));
+  
+      if (!arquivo) {
+        return res.status(404).json({ error: 'Som não encontrado' });
+      }
+  
+      fs.unlinkSync(path.join(pasta, arquivo));
+      res.json({ message: 'Som deletado com sucesso' });
+  
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Erro ao deletar som' });
     }
   };

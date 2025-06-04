@@ -1,19 +1,21 @@
-.header{
+.header {
     display: flex;
     background-color: var(--azul-ufsm);
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     position: relative;
     width: 100vw;
-    height: 20%;
-}
-.left{
+    height: 8vh;
+  }
+  
+  .left {
     position: absolute;
     justify-content: center;
-    left: 20px;
-}
-
-.header-img{
+    left: 1.25rem;
+  }
+  
+  .header-img {
     position: absolute;
-    margin-left:90vw ;
-}
+    margin-left: 56.25vw;
+  }
+  

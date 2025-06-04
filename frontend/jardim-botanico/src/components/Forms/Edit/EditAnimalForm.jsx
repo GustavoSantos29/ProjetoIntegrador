@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import TextInput from '../../Inputs/TextInput/TextInput';
 import ImageInput from '../../Inputs/ImageInput/ImageInput';
 import TextArea from '../../Inputs/TextArea/TextArea';
@@ -11,6 +12,7 @@ const EditAnimalForm = ({ animalId }) => {
   const [toast, setToast] = useState({ visible: false, type: '', message: '' });
   const [imageFile, setImageFile] = useState(null);
   const [soundFile, setSoundFile] = useState(null);
+
 
   const [formData, setFormData] = useState({
     nomePopular: '',
@@ -131,6 +133,7 @@ const EditAnimalForm = ({ animalId }) => {
       }
 
       showToast('success', 'Animal editado com sucesso!');
+      
     } catch (error) {
       showToast('warning', 'Erro ao editar animal!');
       console.error(error);

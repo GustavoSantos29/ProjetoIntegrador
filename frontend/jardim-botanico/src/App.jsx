@@ -10,11 +10,10 @@ import AnimalEditPage from './pages/AnimalPages/AnimalEdit/AnimalEditPage.jsx';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage/>} />
+      <Route path="/" element={<AnimalListPage/>} />
       <Route path="/create" element={<AnimalCreateFormPage />} />
       <Route path="/animal/:id" element={<AnimalViewPage />} />
       <Route path="/animal/edit/:id" element={<AnimalEditPage />} />
-      <Route path="/list" element={<AnimalListPage />} />
     </Routes>
   )
 }
