@@ -54,11 +54,13 @@ const CreateAnimalForm = () => {
       'reproducao', 'habitat', 'reino', 'filo', 'classe', 'ordem',
       'familia', 'genero', 'especie'
     ];
+
     const newErrors = requiredFields.reduce((acc, field) => {
       acc[field] = formData[field].trim() === '';
       return acc;
     }, {});
     newErrors.foto = !imageFile;
+
     if (Object.values(newErrors).some(Boolean)) {
       setErrors(newErrors);
       showToast('warning', 'Por favor, preencha todos os campos obrigatórios!');
@@ -72,8 +74,8 @@ const CreateAnimalForm = () => {
         body: JSON.stringify(formData)
       });
       if (!response.ok) throw new Error('Erro ao criar animal');
-      const { id } = await response.json();
 
+      const { id } = await response.json();
       const formImage = new FormData();
       formImage.append('imagem', imageFile);
       await fetch(`/api/animais/${id}/upload-imagem`, {
@@ -126,14 +128,7 @@ const CreateAnimalForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} className="form-container">
-        <ImageInput
-            onFileSelect={(file) => {
-            setImageFile(file);
-            setErrors((prev) => ({ ...prev, foto: false }));
-          }}
-          showError={errors.foto}
-          resetTrigger={resetImageKey}
-        />
+        <ImageInput onFileSelect={(file) => { setImageFile(file); setErrors((prev) => ({ ...prev, foto: false }));}} showError={errors.foto} resetTrigger={resetImageKey} />
 
         <div className="input-section">
           <h2>Dados do animal</h2>
