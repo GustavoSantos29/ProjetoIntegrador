@@ -66,6 +66,7 @@ const EditAnimalForm = ({ animalId }) => {
           genero: data.genero || '',
           subgenero: data.subgenero || '',
           especie: data.especie || '',
+          video: data.video || "",
         });
 
         if (data.foto) setImageFile(data.foto);
@@ -180,7 +181,9 @@ const EditAnimalForm = ({ animalId }) => {
             file={soundFile}
             onFileSelect={(file) => setSoundFile(file)}
           />
-        </div>
+
+        </div>  
+      <TextInput id="video" label="Video" value={formData.video} required onChange={(e) => handleChange('video', e.target.value)} showError={errors.video} />
 
         <Button type="submit">Enviar</Button>
       </form>
