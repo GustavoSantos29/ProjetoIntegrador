@@ -33,7 +33,8 @@ const CreateAnimalForm = () => {
     subfamilia: '',
     genero: '',
     subgenero: '',
-    especie: ''
+    especie: '',
+    video:''
   });
 
   const [errors, setErrors] = useState({});
@@ -108,7 +109,8 @@ const CreateAnimalForm = () => {
         subfamilia: '',
         genero: '',
         subgenero: '',
-        especie: ''
+        especie: '',
+        video: '',
       });
       setImageFile(null);
       setSoundFile(null);
@@ -160,7 +162,9 @@ const CreateAnimalForm = () => {
 
           <SoundInput onFileSelect={(file) => setSoundFile(file)} resetTrigger={resetSoundKey} />
         </div>
-
+        <h2>Video</h2>
+        <TextInput id="video" label='Vídeo' value={formData.video} onChange={(e) => handleChange('video', e.target.value)} showError={errors.video} />
+          <br />
         <Button type="submit">Enviar</Button>
       </form>
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Dropdown from '../Dropdowns/Dropdown';
 import Toast from '../Toast/Toast';
 import DeleteModal from '../Modal/DeleteModal';
+import Button from '../Button/Button';
 import './style.css'
 export default function AnimalList() {
   const [toast, setToast] = useState({ visible: false, type: '', message: '' });
@@ -52,6 +53,10 @@ export default function AnimalList() {
       navigate(`/animal/edit/${id}`);
   }
 
+  function handleCreate() {
+    navigate('/create');
+  }
+
   async function handleExcluir() {
    
     const id = idToDelete;
@@ -73,6 +78,7 @@ export default function AnimalList() {
 
   return (
     <div className="animal-list-container" >
+      <Button type="sumit" children='Criar novo animal' className="button-create" onClick={()=> handleCreate()}/>
       {animais.map((animal) => (
         <Dropdown 
           key={animal.id} 

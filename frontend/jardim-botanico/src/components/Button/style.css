@@ -21,3 +21,9 @@
     background-color: var(--branco);
     color: var(--azul-ufsm);
 }
+
+.button-create{
+    position: relative;
+    min-height: 3.125rem;
+    margin-left: 56vw;
+}

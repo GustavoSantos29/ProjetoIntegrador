@@ -10,7 +10,7 @@ const AnimalListPage = () => {
     const { id } = useParams();
     return (
         <div className='page-container'>
-            <HeaderAdmin back={'/'}/>
+            <HeaderAdmin/>
             <div className="page-content">
                 <Container children={<ListAnimals />} text='Animais'/>
                

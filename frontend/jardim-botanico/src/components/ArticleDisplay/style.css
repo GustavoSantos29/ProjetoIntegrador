@@ -1,0 +1,9 @@
+.article-container{
+    display: flex;
+    gap: 2rem;
+}
+
+.artcile-content{
+    text-decoration: none;
+    font-style: italic;
+}
