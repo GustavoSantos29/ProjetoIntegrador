@@ -1,15 +1,30 @@
 .footer {
-    display: flex;
-    background-color: var(--azul-ufsm);
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100vw;
-    height: 8vh;
+  display: flex;
+  background-color: var(--azul-ufsm);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+  height: 8vh;
+  overflow: hidden;
+  font-size: 1.8rem;
+}
+
+
+.footer-img {
+  position: absolute;
+  margin-left: 72vw;
+  width: 50px;
+  height: 60px;
+}
+
+@media (max-width: 600px){
+  .footer{
+    font-size: 12px;
   }
-  
+
   .footer-img {
-    position: absolute;
-    margin-left: 56.25vw;
+    width: 35px;
+    height: 45px;
   }
-  
+}

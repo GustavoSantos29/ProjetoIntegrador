@@ -5,7 +5,7 @@ const FooterAdim = () => {
   return (
     <div className='footer'>
       <h2>Jardim botanico UFSM</h2>
-      <img src={logo} width="42" height="42" className='footer-img'/>
+      <img src={logo} className='footer-img'/>
     </div>
   )
 }
