@@ -6,9 +6,20 @@ const fs = require('fs');
 // Criar novo animal
 exports.createAnimal = async (req, res) => {
   try {
+    const { artigos, ...animalData } = req.body;
+
     const animal = await prisma.animal.create({
-      data: req.body,
+      data: {
+        ...animalData,
+        artigos: {
+          create: artigos || [],
+        },
+      },
+      include: {
+        artigos: true,
+      },
     });
+
     res.status(201).json(animal);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -41,22 +52,62 @@ exports.getAnimalById = async (req, res) => {
 // Atualizar um animal
 exports.updateAnimal = async (req, res) => {
   try {
+    const animalId = parseInt(req.params.id);
+    const {
+      artigosCriar = [],
+      artigosExcluir = [],
+      ...animalData
+    } = req.body;
+
+    // Deletar artigos indicados
+    if (artigosExcluir.length > 0) {
+      await prisma.article.deleteMany({
+        where: {
+          id: { in: artigosExcluir },
+          animalId: animalId,
+        },
+      });
+    }
+
+    // Criar novos artigos
+    const artigosCreateData = artigosCriar.map(a => ({
+      nome: a.nome,
+      link: a.link,
+    }));
+
     const animal = await prisma.animal.update({
-      where: { id: parseInt(req.params.id) },
-      data: req.body,
+      where: { id: animalId },
+      data: {
+        ...animalData,
+        artigos: {
+          create: artigosCreateData,
+        },
+      },
+      include: { artigos: true },
     });
+
     res.json(animal);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
 
+
 // Deletar um animal
 exports.deleteAnimal = async (req, res) => {
   try {
-    await prisma.animal.delete({
-      where: { id: parseInt(req.params.id) },
+    const animalId = parseInt(req.params.id);
+
+    // deletar artigos do animal antes
+    await prisma.article.deleteMany({
+      where: { animalId },
     });
+
+    // deletar animal
+    await prisma.animal.delete({
+      where: { id: animalId },
+    });
+
     res.json({ message: 'Animal deletado com sucesso' });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -127,6 +178,7 @@ exports.deleteAnimal = async (req, res) => {
     }
   };
   
+//deleta som local
   exports.deleteSom = (req, res) => {
     const id = req.params.id;
     const pasta = path.join(__dirname, '..', 'public', 'sons');
@@ -146,4 +198,19 @@ exports.deleteAnimal = async (req, res) => {
       console.error(err);
       res.status(500).json({ error: 'Erro ao deletar som' });
     }
-  };
+
+    
+};
+  
+//deta um artigo especifico
+exports.deleteArticle = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    await prisma.article.delete({
+      where: { id },
+    });
+    res.json({ message: 'Artigo deletado com sucesso' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

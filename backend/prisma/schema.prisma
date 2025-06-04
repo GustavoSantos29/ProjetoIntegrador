@@ -30,13 +30,16 @@ model Animal {
   subfamilia       String?  
   subgenero        String?  
   audio            String?  
-  video            String?  
+  video            String? 
+  artigos          Article[] 
 }
 
 model Article{
     id               Int     @id @default(autoincrement())
     nome          String
     link              String
+    animalId       Int      
+    animal           Animal   @relation(fields: [animalId], references: [id], onDelete:  Cascade)
 }
 
 model Users{

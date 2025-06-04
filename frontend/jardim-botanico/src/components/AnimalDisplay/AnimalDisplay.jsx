@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ImageDisplay from '../ImageDisplay/ImageDisplay';
 import PlayAudio from '../PlayAudio/PlayAudio';
 import './style.css';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 export default function AnimalDispay({id}) {
     const navigate = useNavigate();
@@ -76,7 +77,8 @@ export default function AnimalDispay({id}) {
               <div className="animal-view-data">
                 <div className="animal-info">
                   {renderAnimalData(animal)}
-                  <PlayAudio audio={animal.audio}/>
+                  <PlayAudio audio={animal.audio} />
+                  <VideoPlayer url={animal.video} /> 
                 </div>
                 
               </div>
