@@ -4,6 +4,7 @@ import Triangle from '../../assets/svg/Triangle'
 import { useState } from 'react'
 import EditIcon from '../../assets/svg/EditIcon'
 import DeleteIcon from '../../assets/svg/DeleteIcon'
+import QrcodeIcon from '../../assets/svg/QrcodeIcon'
 /**
  * 
  * @param name
@@ -11,7 +12,7 @@ import DeleteIcon from '../../assets/svg/DeleteIcon'
  * @param onEdit
  * @param onDelete
  */
-const Dropdown = ({ name, onView, onDelete, onEdit }) => {
+const Dropdown = ({ name, onView, onDelete, onEdit, onQr }) => {
   const [dropdownState, setState] = useState(false)
   const handleState =(e)=> {
     if (dropdownState == false) {
@@ -44,7 +45,11 @@ const Dropdown = ({ name, onView, onDelete, onEdit }) => {
       <hr />
         <div className="dropdown-item" onClick={onView}>
           <p>Visualizar animal</p>
-
+        </div>
+        <hr/>
+        <div className="dropdown-item" onClick={onQr}>
+          <p>Visualizar QrCode</p>
+          {<QrcodeIcon />}
         </div>
 
       </div>

@@ -82,6 +82,9 @@ const CreateAnimalForm = () => {
         method: 'POST',
         body: formImage
       });
+      await fetch(`/api/animais/${id}/upload-qrcode`, {
+        method: 'POST',
+      });
       if (soundFile) {
         const formAudio = new FormData();
         formAudio.append('som', soundFile);
@@ -90,6 +93,7 @@ const CreateAnimalForm = () => {
           body: formAudio
         });
       }
+
       showToast('success', 'Animal criado com sucesso!');
 
       setFormData({

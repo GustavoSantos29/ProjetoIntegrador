@@ -12,7 +12,7 @@ router.delete('/:id', animalController.deleteAnimal);
 //Uploads
 router.post('/:id/upload-imagem', upload.single('imagem'), animalController.uploadImagem);
 router.post('/:id/upload-som', upload.single('som'), animalController.uploadSom);
-
+ router.post('/:id/upload-qrcode', animalController.updateQrCode);
 //Deletes
 router.delete('/:id/delete-imagem', animalController.deleteImagem);
 router.delete('/:id/delete-som', animalController.deleteSom);

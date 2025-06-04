@@ -4,11 +4,15 @@ import Dropdown from '../Dropdowns/Dropdown';
 import Toast from '../Toast/Toast';
 import DeleteModal from '../Modal/DeleteModal';
 import Button from '../Button/Button';
+import QrcodeDisplay from '../QrcodeDisplay/QrcodeDisplay';
 import './style.css'
+
 export default function AnimalList() {
   const [toast, setToast] = useState({ visible: false, type: '', message: '' });
   const showToast = (type, message) => setToast({ visible: true, type, message });
   const hideToast = () => setToast({ ...toast, visible: false });
+  const [showQr, setShowQr] = useState(false);
+  const [qrUrl, setQrUrl] = useState(''); 
   const [modalVisible, setModalVisible] = useState(false);
   const [idToDelete, setIdToDelete] = useState(null);
   const [nameToDelete, setNameToDelete] = useState(null);
@@ -76,6 +80,11 @@ export default function AnimalList() {
     }
   }
 
+  function handleShowQr(url) {
+    setQrUrl(url);
+    setShowQr(true);
+  }
+
   return (
     <div className="animal-list-container" >
       <Button type="sumit" children='Criar novo animal' className="button-create" onClick={()=> handleCreate()}/>
@@ -86,6 +95,7 @@ export default function AnimalList() {
           onView={() => handleVisualizar(animal.id)} 
           onDelete={() => confirmExcluir(animal.id, animal.nomePopular)} 
           onEdit={() => handleEditar(animal.id)} 
+          onQr={() => handleShowQr(animal.qrcode)} 
         />
       ))}
       <Toast type={toast.type} message={toast.message} visible={toast.visible} onClose={hideToast} />
@@ -93,7 +103,12 @@ export default function AnimalList() {
         <DeleteModal visible={modalVisible} children={nameToDelete} onConfirm={handleExcluir} onCancel={cancelExcluir}
         />
       )}
-
+     {showQr && (
+        <QrcodeDisplay
+          url={qrUrl}
+          onClose={() => setShowQr(false)}
+        />
+      )}
     </div>
   );
 }
