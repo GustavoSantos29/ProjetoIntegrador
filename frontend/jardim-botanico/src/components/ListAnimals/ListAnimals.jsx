@@ -104,10 +104,7 @@ export default function AnimalList() {
         />
       )}
      {showQr && (
-        <QrcodeDisplay
-          url={qrUrl}
-          onClose={() => setShowQr(false)}
-        />
+        <QrcodeDisplay url={qrUrl} onClose={() => setShowQr(false)}/>
       )}
     </div>
   );

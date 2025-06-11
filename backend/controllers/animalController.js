@@ -2,8 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const path = require('path');
 const fs = require('fs');
-const QRCode = require('qrcode');
-const qrPath = path.join(__dirname, '..', 'public', 'qrcodes');
+
 
 // Criar novo animal
 exports.createAnimal = async (req, res) => {
@@ -16,6 +15,62 @@ exports.createAnimal = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+// Salvar o caminho da imagem
+exports.uploadImagem = async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'Nenhum arquivo enviado' });
+  const id = parseInt(req.params.id);
+  const fileName = req.file.filename;
+
+  try {
+    // Atualiza o campo 'foto' no animal
+    const updatedAnimal = await prisma.animal.update({
+      where: { id },
+      data: { foto: fileName },
+    });
+
+    const caminho = `/imagens/${fileName}`;
+    res.json({ caminho, animal: updatedAnimal });
+  } catch (error) {
+    console.error('Erro ao atualizar imagem no banco:', error);
+    res.status(500).json({ error: 'Erro ao atualizar o animal com a imagem' });
+  }
+};
+
+// Atualizar o campo qrcode com a URL da página do animal
+exports.updateQrCode = async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+
+    const animal = await prisma.animal.findUnique({ where: { id } });
+    if (!animal) {
+      return res.status(404).json({ error: 'Animal não encontrado' });
+    }
+    const localIp = process.env.LOCAL_IP || 'localhost';
+    //alterar local API
+    const url = `http://${localIp}/animal/${id}`;
+
+    const updatedAnimal = await prisma.animal.update({
+      where: { id },
+      data: { qrcode: url },
+    });
+
+    res.json({ message: 'QRCode salvo com sucesso', animal: updatedAnimal });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erro ao salvar URL do QR Code' });
+  }
+};
+
+
+
+
+
+
+
+
+
+
 
 // Listar todos os animais
 exports.getAllAnimais = async (req, res) => {
@@ -65,26 +120,6 @@ exports.deleteAnimal = async (req, res) => {
   }
 };
 
-// Salvar o caminho da imagem
-  exports.uploadImagem = async (req, res) => {
-    if (!req.file) return res.status(400).json({ error: 'Nenhum arquivo enviado' });
-    const id = parseInt(req.params.id);
-    const fileName = req.file.filename;
-
-    try {
-      // Atualiza o campo 'foto' no animal
-      const updatedAnimal = await prisma.animal.update({
-        where: { id },
-        data: { foto: fileName },
-      });
-  
-      const caminho = `/imagens/${fileName}`;
-      res.json({ caminho, animal: updatedAnimal });
-    } catch (error) {
-      console.error('Erro ao atualizar imagem no banco:', error);
-      res.status(500).json({ error: 'Erro ao atualizar o animal com a imagem' });
-    }
-  };
 
   // Salvar o caminho do som
   exports.uploadSom = async (req, res) => {
@@ -151,30 +186,4 @@ exports.deleteAnimal = async (req, res) => {
 };
   
 
-// Atualizar o campo qrcode com a URL da página do animal
-exports.updateQrCode = async (req, res) => {
-  const id = parseInt(req.params.id);
 
-  try {
-
-    const animal = await prisma.animal.findUnique({ where: { id } });
-    if (!animal) {
-      return res.status(404).json({ error: 'Animal não encontrado' });
-    }
-    const localIp = process.env.LOCAL_IP || 'localhost';
-    //alterar localIp no env na hora da apresentação
-    const url = `http://${localIp}/animal/${id}`;
-    console.log('qrcode salvo' + url);
-
-    const updatedAnimal = await prisma.animal.update({
-      where: { id },
-      data: { qrcode: url },
-    });
-
-    res.json({ message: 'QRCode salvo com sucesso', animal: updatedAnimal });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Erro ao salvar URL do QR Code' });
-  }
-};

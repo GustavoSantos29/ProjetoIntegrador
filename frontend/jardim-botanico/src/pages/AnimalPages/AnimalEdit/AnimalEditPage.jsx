@@ -11,7 +11,6 @@ const AnimalEditPage = () => {
         <div className='page-container'>
              <HeaderAdmin back={'/'} />
             <div className="page-content">
-        
                         <Container children={<EditAnimalForm animalId={id} />} text='Edição de animal' /> 
             </div>
             <FooterAdmin/>

@@ -11,6 +11,7 @@ import QrcodeIcon from '../../assets/svg/QrcodeIcon'
  * @param onView
  * @param onEdit
  * @param onDelete
+ * @param onQr
  */
 const Dropdown = ({ name, onView, onDelete, onEdit, onQr }) => {
   const [dropdownState, setState] = useState(false)

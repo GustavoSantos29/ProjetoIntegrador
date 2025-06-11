@@ -15,7 +15,7 @@ const HeaderAdmin = ({back= null}) => {
       <div className="left">
         {goBack(back)}
       </div>    
-        <h2>Jardim botanico UFSM</h2>
+        <h2>Jardim botânico UFSM</h2>
       <img src={ logo}  className='header-img'/>
     </div>
   );

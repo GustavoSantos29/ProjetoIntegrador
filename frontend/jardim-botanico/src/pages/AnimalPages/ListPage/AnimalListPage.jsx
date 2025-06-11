@@ -12,7 +12,6 @@ const AnimalListPage = () => {
             <HeaderAdmin/>
             <div className="page-content">
                 <Container children={<ListAnimals />} text='Animais'/>
-               
                 </div>
             <FooterAdmin/>
         </div>

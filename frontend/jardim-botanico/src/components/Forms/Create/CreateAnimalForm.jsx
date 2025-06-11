@@ -125,14 +125,13 @@ const CreateAnimalForm = () => {
       setErrors({});
     } catch (error) {
       showToast('warning', 'Erro ao criar animal!');
-      console.error(error);
     }
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="form-container">
-        <ImageInput onFileSelect={(file) => { setImageFile(file); setErrors((prev) => ({ ...prev, foto: false }));}} showError={errors.foto} resetTrigger={resetImageKey} />
+        <ImageInput onFileSelect={(file) => {setImageFile(file); setErrors((prev) => ({ ...prev, foto: false }));}} showError={errors.foto} resetTrigger={resetImageKey} />
 
         <div className="input-section">
           <h2>Dados do animal</h2>

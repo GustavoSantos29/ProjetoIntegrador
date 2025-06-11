@@ -71,7 +71,6 @@ const EditAnimalForm = ({ animalId }) => {
 
         if (data.foto) setImageFile(data.foto);
         if (data.audio) setSoundFile(data.audio);
-          console.log(imageFile +' + '+soundFile);
       } catch (error) {
         showToast('warning', 'Erro ao carregar dados do animal!');
         console.error(error);
@@ -183,7 +182,7 @@ const EditAnimalForm = ({ animalId }) => {
           />
 
         </div>  
-      <TextInput id="video" label="Video" value={formData.video} required onChange={(e) => handleChange('video', e.target.value)} showError={errors.video} />
+      <TextInput id="video" label="Video" value={formData.video} onChange={(e) => handleChange('video', e.target.value)} showError={errors.video} />
 
         <Button type="submit">Enviar</Button>
       </form>

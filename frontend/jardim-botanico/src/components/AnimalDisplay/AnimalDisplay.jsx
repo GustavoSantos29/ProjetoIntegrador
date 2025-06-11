@@ -51,7 +51,6 @@ export default function AnimalDispay({id}) {
           subgenero: 'Subgênero',
           especie: 'Espécie'
         }
-        console.log(animal.audio);
         return Object.keys(labels).map((key) => {
           const valor = animal[key]
           if (valor === null || valor === '' || valor === undefined) {

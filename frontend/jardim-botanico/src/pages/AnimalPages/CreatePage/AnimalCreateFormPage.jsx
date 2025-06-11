@@ -10,9 +10,7 @@ const AnimalCreateFormPage = () => {
         <div className='page-container'>
              <HeaderAdmin back={'/'} />
             <div className="page-content">
-
                 <Container children={<CreateAnimalForm/>} text='Criar animal'/>
-                
             </div>
             <FooterAdmin/>
         </div>
