@@ -110,9 +110,9 @@ const EditAnimalForm = ({ animalId }) => {
       const response = await fetch(`/api/animais/${animalId}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-         },
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
         body: JSON.stringify(formData)
       });
       if (!response.ok) throw new Error('Erro ao editar animal');
@@ -123,9 +123,9 @@ const EditAnimalForm = ({ animalId }) => {
         await fetch(`/api/animais/${animalId}/upload-imagem`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-           },
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
           body: formImage
         });
       }
@@ -136,9 +136,9 @@ const EditAnimalForm = ({ animalId }) => {
         await fetch(`/api/animais/${animalId}/upload-som`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-           },
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
           body: formAudio
         });
       }

@@ -38,8 +38,9 @@ export default function AnimalList() {
         const token = sessionStorage.getItem('token');
         const response = await fetch('/api/animais',{
           headers: {
-          'Authorization': `Bearer ${token}`
-        }
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
       });
         const data = await response.json();
         setAnimais(data);
@@ -76,22 +77,25 @@ export default function AnimalList() {
       await fetch(`/api/animais/${id}/delete-imagem`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
       }).catch(() => {});
 
       await fetch(`/api/animais/${id}/delete-som`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
       }).catch(() => {});
 
       await fetch(`/api/animais/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
       });
 
       setAnimais((prev) => prev.filter((a) => a.id !== id));

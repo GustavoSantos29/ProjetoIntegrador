@@ -1,29 +1,38 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext/AuthProvider.jsx'; // importe seu contexto
 import TextInput from '../../../components/Inputs/TextInput/TextInput';
 import Button from '../../../components/Button/Button';
-import './style.css'
+import './style.css';
+
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
+
+  const { setIsAuthenticated, setIsAdmin } = useAuth(); // receba os setters do contexto
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const res = await fetch('/api/users/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-       },
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
       body: JSON.stringify({ email, senha })
     });
 
     const data = await res.json();
 
     if (res.ok) {
-      sessionStorage.setItem('token', data.token);
-      navigate('/'); 
+      console.log("Login certo");
+      // Atualize o estado global
+      setIsAuthenticated(true);
+      setIsAdmin(data.admin);
+
+      sessionStorage.setItem('isAdmin', data.admin); // se ainda quiser guardar no sessionStorage
+      navigate('/');
     } else {
       alert('Login falhou: ' + data.error);
     }

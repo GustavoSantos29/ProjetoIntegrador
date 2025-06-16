@@ -71,9 +71,9 @@ const CreateAnimalForm = () => {
       const response = await fetch('/api/animais', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-         },
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
         body: JSON.stringify(formData)
       });
       if (!response.ok) throw new Error('Erro ao criar animal');
@@ -84,17 +84,17 @@ const CreateAnimalForm = () => {
       await fetch(`/api/animais/${id}/upload-imagem`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-         },
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
         body: formImage
       });
       await fetch(`/api/animais/${id}/upload-qrcode`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-         },
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
       });
       if (soundFile) {
         const formAudio = new FormData();
@@ -102,9 +102,9 @@ const CreateAnimalForm = () => {
         await fetch(`/api/animais/${id}/upload-som`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-           },
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
           body: formAudio
         });
       }

@@ -4,13 +4,18 @@ import FooterAdmin from '../../../components/AdminFooter/FooterAdim.jsx'
 import ListAnimals from '../../../components/ListAnimals/ListAnimals.jsx'
 import './style.css'
 import Container from '../../../components/Container/Container.jsx'
+import { useAuth } from '../../../context/AuthContext/AuthProvider.jsx'
 
 const AnimalListPage = () => {
 
+    const { isAdmin } = useAuth();
     return (
         <div className='page-container'>
             <HeaderAdmin/>
             <div className="page-content">
+                {
+                    isAdmin && <h3>Admin logado</h3>
+                }
                 <Container children={<ListAnimals />} text='Animais'/>
                 </div>
             <FooterAdmin/>
