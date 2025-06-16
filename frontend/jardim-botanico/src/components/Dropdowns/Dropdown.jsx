@@ -5,6 +5,7 @@ import { useState } from 'react'
 import EditIcon from '../../assets/svg/EditIcon'
 import DeleteIcon from '../../assets/svg/DeleteIcon'
 import QrcodeIcon from '../../assets/svg/QrcodeIcon'
+import ViewIcon from '../../assets/svg/ViewIcon'
 /**
  * 
  * @param name
@@ -46,6 +47,7 @@ const Dropdown = ({ name, onView, onDelete, onEdit, onQr }) => {
       <hr />
         <div className="dropdown-item" onClick={onView}>
           <p>Visualizar animal</p>
+          {<ViewIcon/>}
         </div>
         <hr/>
         <div className="dropdown-item" onClick={onQr}>

@@ -1,40 +1,20 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TextInput from '../../components/Inputs/TextInput/TextInput';
-import Button from '../../components/Button/Button';
+import React from 'react'
+import HeaderAdmin from '../../components/AdminHeader/HeaderAdmin.jsx'
 
-function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+import FooterAdmin from '../../components/AdminFooter/FooterAdim.jsx'
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+import LoginForm from '../../components/Forms/Login/LoginForm.jsx'
 
-    const res = await fetch('http://localhost:3000/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      localStorage.setItem('token', data.token);
-      navigate('/'); // redireciona após login
-    } else {
-      alert('Login falhou: ' + data.error);
-    }
-  };
-
-  return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <TextInput type="email" label='E-mail' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <TextInput type="password" label='Senha' placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      <Button type="submit">Entrar</Button>
-    </form>
-  );
+const LoginPage = () => {
+    return (
+        <div className='page-container'>
+                <HeaderAdmin />
+        <div className="page-content">
+               <LoginForm/>
+            </div>
+                <FooterAdmin />
+        </div>
+    )
 }
 
-export default LoginPage;
+export default LoginPage

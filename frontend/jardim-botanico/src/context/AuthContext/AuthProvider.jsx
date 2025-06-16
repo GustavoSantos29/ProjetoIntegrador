@@ -1,19 +1,20 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const token = localStorage.getItem('token');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const isAuthenticated = !!token;
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    window.location.href = '/login';
-  };
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    setIsAuthenticated(!!token);
+    setLoading(false);
+ 
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ token, isAuthenticated, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, loading }}>
       {children}
     </AuthContext.Provider>
   );

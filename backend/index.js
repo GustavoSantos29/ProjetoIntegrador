@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const animalRoutes = require('./routes/animalRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 dotenv.config();
 
@@ -9,6 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/users', authRoutes);
 app.use('/api/animais', animalRoutes);
 app.use('/imagens', express.static('public/imagens'));
 app.use('/sons', express.static('public/sons'));

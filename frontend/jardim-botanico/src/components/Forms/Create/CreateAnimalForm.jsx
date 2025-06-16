@@ -70,7 +70,10 @@ const CreateAnimalForm = () => {
     try {
       const response = await fetch('/api/animais', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+         },
         body: JSON.stringify(formData)
       });
       if (!response.ok) throw new Error('Erro ao criar animal');
@@ -80,16 +83,28 @@ const CreateAnimalForm = () => {
       formImage.append('imagem', imageFile);
       await fetch(`/api/animais/${id}/upload-imagem`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+         },
         body: formImage
       });
       await fetch(`/api/animais/${id}/upload-qrcode`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+         },
       });
       if (soundFile) {
         const formAudio = new FormData();
         formAudio.append('som', soundFile);
         await fetch(`/api/animais/${id}/upload-som`, {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+           },
           body: formAudio
         });
       }

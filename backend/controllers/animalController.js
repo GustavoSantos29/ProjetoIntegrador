@@ -63,15 +63,6 @@ exports.updateQrCode = async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
-
 // Listar todos os animais
 exports.getAllAnimais = async (req, res) => {
   try {

@@ -35,7 +35,12 @@ export default function AnimalList() {
   useEffect(() => {
     async function fetchAnimais() {
       try {
-        const response = await fetch('/api/animais');
+        const token = sessionStorage.getItem('token');
+        const response = await fetch('/api/animais',{
+          headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
         const data = await response.json();
         setAnimais(data);
         console.log(data);
@@ -66,17 +71,33 @@ export default function AnimalList() {
     const id = idToDelete;
     setModalVisible(false);
     setIdToDelete(null);
-
+    const token = sessionStorage.getItem('token');
     try {
-      await fetch(`/api/animais/${id}/delete-imagem`, { method: 'DELETE' }).catch(() => {});
-      await fetch(`/api/animais/${id}/delete-som`, { method: 'DELETE' }).catch(() => {});
-      await fetch(`/api/animais/${id}`, { method: 'DELETE' });
+      await fetch(`/api/animais/${id}/delete-imagem`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).catch(() => {});
+
+      await fetch(`/api/animais/${id}/delete-som`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).catch(() => {});
+
+      await fetch(`/api/animais/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
       setAnimais((prev) => prev.filter((a) => a.id !== id));
-
-      showToast('success','Animal excluído com sucesso!')
+      showToast('success', 'Animal excluído com sucesso!');
     } catch (error) {
-
-      showToast('warning','Erro ao excluir animal!')
+      showToast('warning', 'Erro ao excluir animal!');
     }
   }
 
