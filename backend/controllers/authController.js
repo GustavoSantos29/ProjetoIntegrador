@@ -10,11 +10,11 @@ exports.register = async (req, res) => {
   const hashedPassword = bcrypt.hashSync(senha, 10);
   const active = true;
   const admin = false;
-  try {
-    const user = await prisma.users.create({
-      data: { email, senha: hashedPassword,active,admin},
-    });
 
+  try {
+    await prisma.users.create({
+      data: { email, senha: hashedPassword, active, admin },
+    });
     res.status(201).json({ message: 'Usuário criado com sucesso' });
   } catch (err) {
     res.status(400).json({ error: 'Erro ao registrar usuário' });
@@ -24,43 +24,70 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   const { email, senha } = req.body;
 
-  const user = await prisma.users.findUnique({ where: { email , senha} });
+  try {
+    const user = await prisma.users.findUnique({ where: { email } });
 
-  // if (!user || !bcrypt.compareSync(senha, user.senha)) {
-  //   return res.status(401).json({ error: 'Credenciais inválidas meu nobre' });
-  // }
+    if (!user) {
+      return res.status(401).json({ error: 'Credenciais inválidas meu nobre' });
+    }
 
-  if (!user) {
-    return res.status(401).json({ error: 'Credenciais inválidas meu nobre' });
+    const token = jwt.sign({ id: user.id, admin: user.admin }, SECRET, { expiresIn: '1h' });
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Lax',
+      maxAge: 60 * 60 * 1000,
+    });
+
+    res.status(200).json({ admin: user.admin });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erro no servidor ao fazer login' });
   }
+};
 
-  const token = jwt.sign({ usersId: user.id }, SECRET, { expiresIn: '1h' });
+// Nova rota para verificar login via cookie
+exports.verify = (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.status(200).json({admin: req.isAdmin});
+};
 
-  res.json({ token });
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await prisma.users.findMany();
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar usuários' });
+  }
 };
 
 exports.removeUser = async (req, res) => {
- 
   const { id } = req.params;
 
   try {
-    const user = await prisma.users.findUnique({ where: { id } });
+    const user = await prisma.users.findUnique({ where: { id: parseInt(id) } });
 
-    if (!user) {
-      return res.status(400).json({error: 'Usuário não encontrado'});
-    }
-    if (!user.active) {
-      return res.status(400).json({error: 'Usuário já foi excluído'});
-    }
+    if (!user) return res.status(400).json({ error: 'Usuário não encontrado' });
+    if (!user.active) return res.status(400).json({ error: 'Usuário já foi excluído' });
 
-    await prisma.user.update({
+    await prisma.users.update({
       where: { id: parseInt(id) },
       data: { active: false },
     });
 
-    res.json({message: "Usuário excluído com sucesso"});
+    res.json({ message: "Usuário excluído com sucesso" });
   } catch (err) {
-    res.status({ error: "Erro interno ao excluir usuário" });
+    res.status(500).json({ error: "Erro interno ao excluir usuário" });
   }
-  
+};
+
+exports.logout = (req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'Strict',
+  });
+  res.status(200).json({ message: 'Logout efetuado com sucesso' });
 };

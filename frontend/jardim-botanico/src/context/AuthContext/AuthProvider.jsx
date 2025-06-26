@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
         });
 
         // apenas para testar o loading
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // await new Promise(resolve => setTimeout(resolve, 1500));
 
         if (res.ok) {
           const data = await res.json();
