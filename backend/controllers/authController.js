@@ -56,7 +56,7 @@ exports.verify = (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await prisma.users.findMany();
+    const users = await prisma.users.findMany({ where: { admin : false}});
     res.json(users);
   } catch (err) {
     res.status(500).json({ error: 'Erro ao buscar usuários' });

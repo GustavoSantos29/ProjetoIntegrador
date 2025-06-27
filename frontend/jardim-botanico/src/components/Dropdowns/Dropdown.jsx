@@ -14,7 +14,7 @@ import ViewIcon from '../../assets/svg/ViewIcon'
  * @param onDelete
  * @param onQr
  */
-const Dropdown = ({ name, onView, onDelete, onEdit, onQr }) => {
+const Dropdown = ({ name, onView, onDelete, onEdit, onQr = false }) => {
   const [dropdownState, setState] = useState(false)
   const handleState =(e)=> {
     if (dropdownState == false) {
@@ -49,12 +49,13 @@ const Dropdown = ({ name, onView, onDelete, onEdit, onQr }) => {
           <p>Visualizar animal</p>
           {<ViewIcon/>}
         </div>
-        <hr/>
-        <div className="dropdown-item" onClick={onQr}>
-          <p>Visualizar QrCode</p>
-          {<QrcodeIcon />}
-        </div>
-
+        <hr />
+        {onQr &&
+          <div className="dropdown-item" onClick={onQr}>
+            <p>Visualizar QrCode</p>
+            {<QrcodeIcon />}
+          </div>
+        }
       </div>
 
       </div>

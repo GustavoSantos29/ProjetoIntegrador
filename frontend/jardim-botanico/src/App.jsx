@@ -5,6 +5,7 @@ import AnimalViewPage from './pages/AnimalPages/AnimalView/AnimalViewPage.jsx';
 import AnimalListPage from './pages/AnimalPages/ListPage/AnimalListPage.jsx';
 import AnimalEditPage from './pages/AnimalPages/AnimalEdit/AnimalEditPage.jsx';
 import LoginPage from './pages/LoginPage/LoginPage.jsx'
+import UserPage from './pages/UsersPages/UserPage.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import { AuthProvider } from './context/AuthContext/AuthProvider.jsx';
 
@@ -22,6 +23,12 @@ function App() {
         <Route path="/" element={
           <PrivateRoute>
           <AnimalListPage />
+          </PrivateRoute>
+        } />
+
+    <Route path="user/" element={
+          <PrivateRoute>
+          <UserPage />
           </PrivateRoute>
         } />
         

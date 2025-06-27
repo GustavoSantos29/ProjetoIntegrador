@@ -8,14 +8,12 @@ import { useAuth } from '../../../context/AuthContext/AuthProvider.jsx'
 
 const AnimalListPage = () => {
 
-    const { isAdmin } = useAuth();
+    
     return (
         <div className='page-container'>
             <HeaderAdmin/>
             <div className="page-content">
-                {
-                    isAdmin && <h3>Admin logado</h3>
-                }
+              
                 <Container children={<ListAnimals />} text='Animais'/>
                 </div>
             <FooterAdmin/>
