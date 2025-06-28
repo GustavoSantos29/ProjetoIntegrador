@@ -12,11 +12,13 @@ model Animal {
   foto             String?
   nomePopular      String
   nomeCientifico   String
-  tamanho          String
-  dieta            String
-  comportamento    String
-  reproducao       String
-  habitat          String
+  nAcervo             String?
+  tamanho          String?
+  porte               String?
+  dieta            String?
+  comportamento    String?
+  reproducao       String?
+  habitat          String?
   descricao        String? 
   reino            String
   filo             String
@@ -42,6 +44,7 @@ model Article{
 
 model Users{
     id               Int     @id @default(autoincrement())
+    nome          String
     active          Boolean @default(true)
     email          String @unique
     senha         String

@@ -17,7 +17,9 @@ const EditAnimalForm = ({ animalId }) => {
   const [formData, setFormData] = useState({
     nomePopular: '',
     nomeCientifico: '',
+    nAcervo:'',
     tamanho: '',
+    porte:'',
     dieta: '',
     comportamento: '',
     reproducao: '',
@@ -34,6 +36,7 @@ const EditAnimalForm = ({ animalId }) => {
     genero: '',
     subgenero: '',
     especie: '',
+    video:''
   });
 
   const [errors, setErrors] = useState({});

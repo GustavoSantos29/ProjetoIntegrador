@@ -17,7 +17,9 @@ const CreateAnimalForm = () => {
   const [formData, setFormData] = useState({
     nomePopular: '',
     nomeCientifico: '',
+    nAcervo:'',
     tamanho: '',
+    porte:'',
     dieta: '',
     comportamento: '',
     reproducao: '',
@@ -50,8 +52,7 @@ const CreateAnimalForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const requiredFields = [
-      'nomePopular', 'nomeCientifico', 'tamanho', 'dieta', 'comportamento',
-      'reproducao', 'habitat', 'reino', 'filo', 'classe', 'ordem',
+      'nomePopular', 'nomeCientifico', 'reino', 'filo', 'classe', 'ordem',
       'familia', 'genero', 'especie'
     ];
 
@@ -114,7 +115,9 @@ const CreateAnimalForm = () => {
       setFormData({
         nomePopular: '',
         nomeCientifico: '',
+        nAcervo:'',
         tamanho: '',
+        porte:'',
         dieta: '',
         comportamento: '',
         reproducao: '',
@@ -131,7 +134,7 @@ const CreateAnimalForm = () => {
         genero: '',
         subgenero: '',
         especie: '',
-        video: '',
+        video:''
       });
       setImageFile(null);
       setSoundFile(null);
@@ -152,11 +155,13 @@ const CreateAnimalForm = () => {
           <h2>Dados do animal</h2>
           <TextInput id="nomePopular" label="Nome popular" value={formData.nomePopular} required onChange={(e) => handleChange('nomePopular', e.target.value)} showError={errors.nomePopular} />
           <TextInput id="nomeCientifico" label="Nome científico" value={formData.nomeCientifico} required onChange={(e) => handleChange('nomeCientifico', e.target.value)} showError={errors.nomeCientifico} />
-          <TextInput id="tamanho" label="Tamanho" value={formData.tamanho} required onChange={(e) => handleChange('tamanho', e.target.value)} showError={errors.tamanho} />
-          <TextInput id="dieta" label="Dieta" value={formData.dieta} required onChange={(e) => handleChange('dieta', e.target.value)} showError={errors.dieta} />
-          <TextInput id="comportamento" label="Comportamento" value={formData.comportamento} required onChange={(e) => handleChange('comportamento', e.target.value)} showError={errors.comportamento} />
-          <TextInput id="reproducao" label="Reprodução" value={formData.reproducao} required onChange={(e) => handleChange('reproducao', e.target.value)} showError={errors.reproducao} />
-          <TextInput id="habitat" label="Habitat" value={formData.habitat} required onChange={(e) => handleChange('habitat', e.target.value)} showError={errors.habitat} />
+          <TextInput id="nAcervo" label="Número do acervo" value={formData.nAcervo} onChange={(e) => handleChange('nAcervo', e.target.value)} showError={errors.nAcervo} />
+          <TextInput id="tamanho" label="Tamanho" value={formData.tamanho} onChange={(e) => handleChange('tamanho', e.target.value)} showError={errors.tamanho} />
+          <TextInput id="porte" label="Porte" value={formData.porte} onChange={(e) => handleChange('porte', e.target.value)} showError={errors.porte} />
+          <TextInput id="dieta" label="Dieta" value={formData.dieta} onChange={(e) => handleChange('dieta', e.target.value)} showError={errors.dieta} />
+          <TextInput id="comportamento" label="Comportamento" value={formData.comportamento} onChange={(e) => handleChange('comportamento', e.target.value)} showError={errors.comportamento} />
+          <TextInput id="reproducao" label="Reprodução" value={formData.reproducao} onChange={(e) => handleChange('reproducao', e.target.value)} showError={errors.reproducao} />
+          <TextInput id="habitat" label="Habitat" value={formData.habitat} onChange={(e) => handleChange('habitat', e.target.value)} showError={errors.habitat} />
           <TextArea id="descricao" label="Descrição" value={formData.descricao} onChange={(e) => handleChange('descricao', e.target.value)}/>
           <h2>Taxonomia</h2>
           <div className="sub-input-section">

@@ -8,19 +8,21 @@ const authRoutes = require('./routes/authRoutes');
 dotenv.config();
 
 const app = express();
+
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
 }));
-app.use(express.json());
+
 app.use(cookieParser());
 
-app.use('/api/users', authRoutes);
-app.use('/api/animais', animalRoutes);
+app.use('/api/users', authRoutes);  // aqui o json parser está dentro do authRoutes
+app.use('/api/animais', animalRoutes); // aqui não tem json parser
+
 app.use('/imagens', express.static('public/imagens'));
 app.use('/sons', express.static('public/sons'));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT,'0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
