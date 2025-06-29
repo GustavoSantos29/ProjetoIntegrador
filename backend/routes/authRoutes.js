@@ -9,7 +9,7 @@ router.post('/register', authMiddleware, adminOnly, authController.register); //
 router.post('/login', authController.login);
 
 router.get('/', authMiddleware, adminOnly, authController.getAllUsers)
-// Rota para verificar login (usada pelo front)
+
 router.get('/verify', authMiddleware, authController.verify);
 
 router.delete('/:id', authMiddleware, adminOnly, authController.removeUser);

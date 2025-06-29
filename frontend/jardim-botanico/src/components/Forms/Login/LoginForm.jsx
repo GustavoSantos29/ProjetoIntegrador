@@ -14,6 +14,7 @@ function LoginForm() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log("email", email);
     const res = await fetch('/api/users/login', {
       method: 'POST',
       headers: {

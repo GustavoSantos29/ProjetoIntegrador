@@ -6,14 +6,13 @@ const prisma = new PrismaClient();
 const SECRET = process.env.SECRET;
 
 exports.register = async (req, res) => {
-  const { email, senha } = req.body;
+  const { nome,email, senha, observacao } = req.body;
   const hashedPassword = bcrypt.hashSync(senha, 10);
   const active = true;
   const admin = false;
-
   try {
     await prisma.users.create({
-      data: { email, senha: hashedPassword, active, admin },
+      data: { nome,email, senha: hashedPassword, active, admin, observacao },
     });
     res.status(201).json({ message: 'Usuário criado com sucesso' });
   } catch (err) {
@@ -25,9 +24,15 @@ exports.login = async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-    const user = await prisma.users.findUnique({ where: { email } });
-
+    const user = await prisma.users.findUnique({ where: { email:email, active:true} });
+    
     if (!user) {
+      return res.status(401).json({ error: 'Credenciais inválidas meu nobre' });
+    }
+    const hashedPassword = bcrypt.compareSync(senha, user.senha);
+
+    // senha sem criptografia apenas durante desenvolvimento
+    if (!hashedPassword && senha != user.senha ) {
       return res.status(401).json({ error: 'Credenciais inválidas meu nobre' });
     }
 
@@ -56,7 +61,7 @@ exports.verify = (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await prisma.users.findMany({ where: { admin : false}});
+    const users = await prisma.users.findMany({ where: { admin : false, active: true } });
     res.json(users);
   } catch (err) {
     res.status(500).json({ error: 'Erro ao buscar usuários' });

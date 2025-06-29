@@ -52,7 +52,9 @@ const EditAnimalForm = ({ animalId }) => {
         setFormData({
           nomePopular: data.nomePopular || '',
           nomeCientifico: data.nomeCientifico || '',
+          nAcervo: data.nAcervo || "",
           tamanho: data.tamanho || '',
+          porte: data.porte || "",
           dieta: data.dieta || '',
           comportamento: data.comportamento || '',
           reproducao: data.reproducao || '',
@@ -94,8 +96,7 @@ const EditAnimalForm = ({ animalId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const requiredFields = [
-      'nomePopular', 'nomeCientifico', 'tamanho', 'dieta', 'comportamento',
-      'reproducao', 'habitat', 'reino', 'filo', 'classe', 'ordem',
+      'nomePopular', 'nomeCientifico','reino', 'filo', 'classe', 'ordem',
       'familia', 'genero', 'especie'
     ];
     const newErrors = requiredFields.reduce((acc, field) => {
@@ -125,9 +126,6 @@ const EditAnimalForm = ({ animalId }) => {
         formImage.append('imagem', imageFile);
         await fetch(`/api/animais/${animalId}/upload-imagem`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
           credentials: 'include',
           body: formImage
         });
@@ -138,9 +136,6 @@ const EditAnimalForm = ({ animalId }) => {
         formAudio.append('som', soundFile);
         await fetch(`/api/animais/${animalId}/upload-som`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
           credentials: 'include',
           body: formAudio
         });
@@ -167,29 +162,31 @@ const EditAnimalForm = ({ animalId }) => {
         />
 
         <div className="input-section">
-          <h2>Dados do animal</h2>
+        <h2>Dados do animal</h2>
           <TextInput id="nomePopular" label="Nome popular" value={formData.nomePopular} required onChange={(e) => handleChange('nomePopular', e.target.value)} showError={errors.nomePopular} />
           <TextInput id="nomeCientifico" label="Nome científico" value={formData.nomeCientifico} required onChange={(e) => handleChange('nomeCientifico', e.target.value)} showError={errors.nomeCientifico} />
-          <TextInput id="tamanho" label="Tamanho" value={formData.tamanho} required onChange={(e) => handleChange('tamanho', e.target.value)} showError={errors.tamanho} />
-          <TextInput id="dieta" label="Dieta" value={formData.dieta} required onChange={(e) => handleChange('dieta', e.target.value)} showError={errors.dieta} />
-          <TextInput id="comportamento" label="Comportamento" value={formData.comportamento} required onChange={(e) => handleChange('comportamento', e.target.value)} showError={errors.comportamento} />
-          <TextInput id="reproducao" label="Reprodução" value={formData.reproducao} required onChange={(e) => handleChange('reproducao', e.target.value)} showError={errors.reproducao} />
-          <TextInput id="habitat" label="Habitat" value={formData.habitat} required onChange={(e) => handleChange('habitat', e.target.value)} showError={errors.habitat} />
-          <TextArea id="descricao" label="Descrição" value={formData.descricao} onChange={(e) => handleChange('descricao', e.target.value)} />
-
+          <TextInput id="nAcervo" label="Número do acervo" value={formData.nAcervo} onChange={(e) => handleChange('nAcervo', e.target.value)} showError={errors.nAcervo} />
+          <TextInput id="tamanho" label="Tamanho" value={formData.tamanho} onChange={(e) => handleChange('tamanho', e.target.value)} showError={errors.tamanho} />
+          <TextInput id="porte" label="Porte" value={formData.porte} onChange={(e) => handleChange('porte', e.target.value)} showError={errors.porte} />
+          <TextInput id="dieta" label="Dieta" value={formData.dieta} onChange={(e) => handleChange('dieta', e.target.value)} showError={errors.dieta} />
+          <TextInput id="comportamento" label="Comportamento" value={formData.comportamento} onChange={(e) => handleChange('comportamento', e.target.value)} showError={errors.comportamento} />
+          <TextInput id="reproducao" label="Reprodução" value={formData.reproducao} onChange={(e) => handleChange('reproducao', e.target.value)} showError={errors.reproducao} />
+          <TextInput id="habitat" label="Habitat" value={formData.habitat} onChange={(e) => handleChange('habitat', e.target.value)} showError={errors.habitat} />
+          <TextArea id="descricao" label="Descrição" value={formData.descricao} onChange={(e) => handleChange('descricao', e.target.value)}/>
           <h2>Taxonomia</h2>
-          <TextInput id="reino" label="Reino" value={formData.reino} required onChange={(e) => handleChange('reino', e.target.value)} showError={errors.reino} />
-          <TextInput id="filo" label="Filo" value={formData.filo} required onChange={(e) => handleChange('filo', e.target.value)} showError={errors.filo} />
-          <TextInput id="classe" label="Classe" value={formData.classe} required onChange={(e) => handleChange('classe', e.target.value)} showError={errors.classe} />
-          <TextInput id="subclasse" label="Subclasse" value={formData.subclasse} onChange={(e) => handleChange('subclasse', e.target.value)} showError={errors.subclasse} />
-          <TextInput id="ordem" label="Ordem" value={formData.ordem} required onChange={(e) => handleChange('ordem', e.target.value)} showError={errors.ordem} />
-          <TextInput id="subordem" label="Subordem" value={formData.subordem} onChange={(e) => handleChange('subordem', e.target.value)} showError={errors.subordem} />
-          <TextInput id="familia" label="Família" value={formData.familia} required onChange={(e) => handleChange('familia', e.target.value)} showError={errors.familia} />
-          <TextInput id="subfamilia" label="Subfamília" value={formData.subfamilia} onChange={(e) => handleChange('subfamilia', e.target.value)} showError={errors.subfamilia} />
-          <TextInput id="genero" label="Gênero" value={formData.genero} required onChange={(e) => handleChange('genero', e.target.value)} showError={errors.genero} />
-          <TextInput id="subgenero" label="Subgênero" value={formData.subgenero} onChange={(e) => handleChange('subgenero', e.target.value)} showError={errors.subgenero} />
-          <TextInput id="especie" label="Espécie" value={formData.especie} required onChange={(e) => handleChange('especie', e.target.value)} showError={errors.especie} />
-
+          <div className="sub-input-section">
+            <TextInput id="reino" label="Reino" value={formData.reino} required onChange={(e) => handleChange('reino', e.target.value)} showError={errors.reino} />
+            <TextInput id="filo" label="Filo" value={formData.filo} required onChange={(e) => handleChange('filo', e.target.value)} showError={errors.filo} />
+            <TextInput id="classe" label="Classe" value={formData.classe} size="small" required onChange={(e) => handleChange('classe', e.target.value)} showError={errors.classe} />
+            <TextInput id="subclasse" label="Subclasse" value={formData.subclasse} size="small" onChange={(e) => handleChange('subclasse', e.target.value)} showError={errors.subclasse} />
+            <TextInput id="ordem" label="Ordem" value={formData.ordem} size="small" required onChange={(e) => handleChange('ordem', e.target.value)} showError={errors.ordem} />
+            <TextInput id="subordem" label="Subordem" value={formData.subordem} size="small" onChange={(e) => handleChange('subordem', e.target.value)} showError={errors.subordem} />
+            <TextInput id="familia" label="Família" value={formData.familia} size="small" required onChange={(e) => handleChange('familia', e.target.value)} showError={errors.familia} />
+            <TextInput id="subfamilia" label="Subfamília" value={formData.subfamilia} size="small" onChange={(e) => handleChange('subfamilia', e.target.value)} showError={errors.subfamilia} />
+            <TextInput id="genero" label="Gênero" value={formData.genero} size="small" required onChange={(e) => handleChange('genero', e.target.value)} showError={errors.genero} />
+            <TextInput id="subgenero" label="Subgênero" value={formData.subgenero} size="small" onChange={(e) => handleChange('subgenero', e.target.value)} showError={errors.subgenero} />
+            <TextInput id="especie" label="Espécie" value={formData.especie} required onChange={(e) => handleChange('especie', e.target.value)} showError={errors.especie} />
+          </div>
           <SoundInput
             file={soundFile}
             onFileSelect={(file) => setSoundFile(file)}

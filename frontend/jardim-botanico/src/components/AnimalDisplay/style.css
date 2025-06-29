@@ -33,6 +33,7 @@
 
 .animal-info {
   background-color: white;
+  overflow-wrap: break-word;
   border-radius: 0.5rem;
   padding: 0.9375rem;
   margin-bottom: 1.25rem;
