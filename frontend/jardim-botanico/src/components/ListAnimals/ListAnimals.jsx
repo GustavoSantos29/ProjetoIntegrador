@@ -120,13 +120,13 @@ export default function AnimalList() {
                     <Button
                         type='sumit'
                         children='Gerenciar usuários'
-                        className='button-create'
+                        className='button-create reset'
                         onClick={() => handleUsers()}
                     />
                 )}
                 <Button
                     type='sumit'
-                    children='Criar novo animal'
+                    children='Criar animal'
                     className='button-create'
                     onClick={() => handleCreate()}
                 />

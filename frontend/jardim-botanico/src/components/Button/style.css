@@ -18,8 +18,8 @@
 }
 
 .reset {
-    background-color: var(--branco);
-    color: var(--azul-ufsm);
+    background-color: var(--azul-alt);
+    color: var(--branco);
 }
 
 .button-create{

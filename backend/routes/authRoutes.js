@@ -8,9 +8,14 @@ router.post('/register', authMiddleware, adminOnly, authController.register); //
 
 router.post('/login', authController.login);
 
-router.get('/', authMiddleware, adminOnly, authController.getAllUsers)
+router.get('/', authMiddleware, adminOnly, authController.getAllUsers);
 
 router.get('/verify', authMiddleware, authController.verify);
+
+router.put('/:id', authMiddleware, adminOnly, authController.updateUser);
+
+router.get('/:id', authMiddleware, adminOnly, authController.getUserById);
+
 
 router.delete('/:id', authMiddleware, adminOnly, authController.removeUser);
 

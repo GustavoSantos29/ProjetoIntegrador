@@ -9,6 +9,8 @@ import UserListPage from './pages/UsersPages/UserList/UserListPage.jsx';
 import UserCreateFormPage from './pages/UsersPages/UserCreate/UserCreateFormPage.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import { AuthProvider } from './context/AuthContext/AuthProvider.jsx';
+import UserEditPage from './pages/UsersPages/UserEdit/UserEditPage.jsx';
+import UserViewPage from './pages/UsersPages/UserView/UserViewPage.jsx';
 
 function App() {
     return (
@@ -38,10 +40,28 @@ function App() {
                 />
 
                 <Route
+                    path='users/:id'
+                    element={
+                        <PrivateRoute>
+                            <UserViewPage />
+                        </PrivateRoute>
+                    }
+                />
+
+                <Route
                     path='users/create'
                     element={
                         <PrivateRoute>
                             <UserCreateFormPage />
+                        </PrivateRoute>
+                    }
+                />
+
+                <Route
+                    path='users/edit/:id'
+                    element={
+                        <PrivateRoute>
+                            <UserEditPage />
                         </PrivateRoute>
                     }
                 />

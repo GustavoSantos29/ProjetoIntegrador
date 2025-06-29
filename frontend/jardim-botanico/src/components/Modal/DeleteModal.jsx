@@ -15,7 +15,7 @@ export default function DeleteModal({children, onConfirm, onCancel, visible}) {
         <h3>Deseja excluir {children}?</h3>
         <div className="modal-buttons">
           <Button onClick={onConfirm} children='Confirmar' />
-          <Button onClick={onCancel} children='Cancelar' />
+          <Button onClick={onCancel} children='Cancelar' className='reset'/>
         </div>
       </div>
     </div>

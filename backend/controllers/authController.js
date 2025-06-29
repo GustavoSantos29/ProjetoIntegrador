@@ -52,10 +52,36 @@ exports.login = async (req, res) => {
   }
 };
 
-// Nova rota para verificar login via cookie
 exports.verify = (req, res) => {
   res.set('Cache-Control', 'no-store');
   res.status(200).json({admin: req.isAdmin});
+};
+
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await prisma.users.findUnique({
+      where: { id: parseInt(req.params.id) },
+    });
+    if (!user) return res.status(400).json({ error: 'Usuário não encontrado' });
+    console.log(user);
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.mesage });
+  }
+  
+};
+
+
+exports.updateUser = async (req, res) => {
+  try {
+    const user = await prisma.users.update({
+      where: { id: parseInt(req.params.id) },
+      data: req.body,
+    });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 

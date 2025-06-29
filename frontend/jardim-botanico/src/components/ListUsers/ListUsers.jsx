@@ -68,40 +68,24 @@ const ListUsers = () => {
     }
 
     async function handleExcluir() {
-        // const id = idToDelete;
-        // setModalVisible(false);
-        // setIdToDelete(null);
-        // const token = sessionStorage.getItem('token');
-        // try {
-        //   await fetch(`/api/animais/${id}/delete-imagem`, {
-        //     method: 'DELETE',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     credentials: 'include',
-        //   }).catch(() => {});
+         const id = idToDelete;
+         setModalVisible(false);
+         setIdToDelete(null);
+         const token = sessionStorage.getItem('token');
+         try {
+          await fetch(`/api/users/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+          }).catch(() => {});
 
-        //   await fetch(`/api/animais/${id}/delete-som`, {
-        //     method: 'DELETE',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     credentials: 'include',
-        //   }).catch(() => {});
-
-        //   await fetch(`/api/animais/${id}`, {
-        //     method: 'DELETE',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     credentials: 'include',
-        //   });
-
-        //   setUsers((prev) => prev.filter((u) => u.id !== id));
-        //   showToast('success', 'Animal excluído com sucesso!');
-        // } catch (error) {
-        //   showToast('warning', 'Erro ao excluir animal!');
-        // }
+          setUsers((prev) => prev.filter((u) => u.id !== id));
+          showToast('success', 'Usuário excluído com sucesso!');
+        } catch (error) {
+          showToast('warning', 'Erro ao excluir usuário!');
+        }
         console.log('exlcuir');
     }
 
@@ -112,13 +96,13 @@ const ListUsers = () => {
                     <Button
                         type='sumit'
                         children='Gerenciar animáis'
-                        className='button-create'
+                        className='button-create reset'
                         onClick={() => handleAnimals()}
                     />
                 )}
                 <Button
                     type='sumit'
-                    children='Criar novo usuário'
+                    children='Criar usuário'
                     className='button-create'
                     onClick={() => handleCreate()}
                 />

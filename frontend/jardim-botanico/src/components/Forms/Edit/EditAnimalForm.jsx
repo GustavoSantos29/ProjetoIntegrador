@@ -41,7 +41,6 @@ const EditAnimalForm = ({ animalId }) => {
 
   const [errors, setErrors] = useState({});
 
-  // Buscar dados do animal para preencher o formulário
   useEffect(() => {
     const fetchAnimal = async () => {
       try {
