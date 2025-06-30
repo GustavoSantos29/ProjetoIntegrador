@@ -63,7 +63,6 @@ exports.getUserById = async (req, res) => {
       where: { id: parseInt(req.params.id) },
     });
     if (!user) return res.status(400).json({ error: 'Usuário não encontrado' });
-    console.log(user);
     res.json(user);
   } catch (err) {
     res.status(500).json({ error: err.mesage });
