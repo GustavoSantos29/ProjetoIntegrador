@@ -11,7 +11,7 @@ const AnimalViewPage = () => {
     const { isAuthenticated } = useAuth();
     return (
         <div className='page-container'>
-                <HeaderAdmin back={isAuthenticated ? '/' : undefined}/>
+                <HeaderAdmin back={isAuthenticated ? '/animais' : undefined}/>
             <div className="page-content">
             <div className='view-animal-main'>
                 <AnimalDispay id={id}/>

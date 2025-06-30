@@ -53,18 +53,18 @@ const ListUsers = () => {
     }
 
     function handleVisualizar(id) {
-        navigate(`/users/${id}`);
+        navigate(`/user/${id}`);
     }
 
     function handleEditar(id) {
-        navigate(`/users/edit/${id}`);
+        navigate(`/user/edit/${id}`);
     }
 
     function handleCreate() {
-        navigate('/users/create');
+        navigate('/user/create');
     }
     function handleAnimals() {
-        navigate('/');
+        navigate('/animais');
     }
 
     async function handleExcluir() {
@@ -95,11 +95,17 @@ const ListUsers = () => {
                 {isAdmin && (
                     <Button
                         type='sumit'
-                        children='Gerenciar animáis'
+                        children='Gerenciar animais'
                         className='button-create reset'
                         onClick={() => handleAnimals()}
                     />
                 )}
+                <Button
+                    type='sumit'
+                    children='Home Page'
+                    className='reset'
+                    onClick={() => navigate('/')}
+                />
                 <Button
                     type='sumit'
                     children='Criar usuário'

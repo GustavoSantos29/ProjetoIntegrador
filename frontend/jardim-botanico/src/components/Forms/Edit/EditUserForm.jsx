@@ -12,7 +12,6 @@ const EditUserForm = ({ userId }) => {
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
-        senha: '',
         observacao: '',
     });
     const [errors, setErrors] = useState({});
@@ -27,7 +26,6 @@ const EditUserForm = ({ userId }) => {
                 setFormData({
                     nome: data.nome || '',
                     email: data.email || '',
-                    senha: data.senha || '',
                     observacao: data.observacao || '',
                 });
             } catch (erro) {
@@ -48,7 +46,7 @@ const EditUserForm = ({ userId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const requiredFields = ['nome', 'email', 'senha'];
+        const requiredFields = ['nome', 'email'];
         const nweErros = requiredFields.reduce((acc, field) => {
             acc[field] = formData[field].trim() === '';
             return acc;
@@ -89,14 +87,6 @@ const EditUserForm = ({ userId }) => {
                         required
                         onChange={(e) => handleChange('nome', e.target.value)}
                         showError={errors.nome}
-                    />
-                    <TextInput
-                        id='senha'
-                        label='Senha'
-                        value={formData.senha}
-                        required
-                        onChange={(e) => handleChange('nome', e.target.value)}
-                        showError={errors.senha}
                     />
                     <TextArea
                         id='observacao'

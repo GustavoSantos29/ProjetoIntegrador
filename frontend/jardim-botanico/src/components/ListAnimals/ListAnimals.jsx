@@ -64,7 +64,7 @@ export default function AnimalList() {
     }
 
     function handleCreate() {
-        navigate('/create');
+        navigate('/animal/create');
     }
 
     async function handleExcluir() {
@@ -120,10 +120,16 @@ export default function AnimalList() {
                     <Button
                         type='sumit'
                         children='Gerenciar usuários'
-                        className='button-create reset'
+                        className='reset'
                         onClick={() => handleUsers()}
                     />
                 )}
+                    <Button
+                        type='sumit'
+                        children='Home Page'
+                        className='reset'
+                        onClick={() => navigate('/')}
+                    />
                 <Button
                     type='sumit'
                     children='Criar animal'

@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import { AuthProvider } from './context/AuthContext/AuthProvider.jsx';
 import UserEditPage from './pages/UsersPages/UserEdit/UserEditPage.jsx';
 import UserViewPage from './pages/UsersPages/UserView/UserViewPage.jsx';
+import HomePage from './pages/HomePage/HomePage.jsx';
 
 function App() {
     return (
@@ -19,10 +20,11 @@ function App() {
                 {/* Rotas públicas */}
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/animal/:id' element={<AnimalViewPage />} />
+                <Route path='/' element={<HomePage />} />
 
                 {/* Rotas privadas */}
                 <Route
-                    path='/'
+                    path='/animais'
                     element={
                         <PrivateRoute>
                             <AnimalListPage />
@@ -40,7 +42,7 @@ function App() {
                 />
 
                 <Route
-                    path='users/:id'
+                    path='user/:id'
                     element={
                         <PrivateRoute>
                             <UserViewPage />
@@ -49,7 +51,7 @@ function App() {
                 />
 
                 <Route
-                    path='users/create'
+                    path='user/create'
                     element={
                         <PrivateRoute>
                             <UserCreateFormPage />
@@ -58,7 +60,7 @@ function App() {
                 />
 
                 <Route
-                    path='users/edit/:id'
+                    path='user/edit/:id'
                     element={
                         <PrivateRoute>
                             <UserEditPage />
@@ -67,7 +69,7 @@ function App() {
                 />
 
                 <Route
-                    path='/create'
+                    path='animal/create'
                     element={
                         <PrivateRoute>
                             <AnimalCreateFormPage />
@@ -76,7 +78,7 @@ function App() {
                 />
 
                 <Route
-                    path='/animal/edit/:id'
+                    path='animal/edit/:id'
                     element={
                         <PrivateRoute>
                             <AnimalEditPage />

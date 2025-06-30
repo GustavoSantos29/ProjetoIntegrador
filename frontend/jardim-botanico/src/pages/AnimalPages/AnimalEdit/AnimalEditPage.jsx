@@ -9,7 +9,7 @@ const AnimalEditPage = () => {
     const { id } = useParams();
     return (
         <div className='page-container'>
-             <HeaderAdmin back={'/'} />
+             <HeaderAdmin back={'/animais'} />
             <div className="page-content">
                         <Container children={<EditAnimalForm animalId={id} />} text='Edição de animal' /> 
             </div>
