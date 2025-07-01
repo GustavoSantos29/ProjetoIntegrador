@@ -13,6 +13,7 @@ import './style.css';
 **/
 
 const TextInput = ({
+    style,
     type = 'text',
     label = '',
     required = false,
@@ -31,7 +32,7 @@ const TextInput = ({
     const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
     return (
-        <div className={`input-container ${size === 'big' ? 'big' : 'small'} `}>
+        <div style={style} className={`input-container ${size === 'big' ? 'big' : 'small'}`}>
             <input
                 type={inputType}
                 id={id}

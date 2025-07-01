@@ -2,6 +2,7 @@
   position: relative;
   margin: 0.625rem 0;
   max-width: 32.25rem;
+  min-height: 3rem;
 }
 
 .input-container.big,
@@ -88,5 +89,6 @@
 }
 
 .search{
+  
   background-color: var(--branco);
 }

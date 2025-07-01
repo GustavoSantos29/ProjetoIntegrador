@@ -39,6 +39,8 @@ const CreateAnimalForm = () => {
         video: '',
     });
 
+    const [artigos, setArtigos] = useState([{ nome: '', link: '' }]);
+
     const [errors, setErrors] = useState({});
 
     const handleChange = (field, value) => {
@@ -48,6 +50,23 @@ const CreateAnimalForm = () => {
 
     const showToast = (type, message) => setToast({ visible: true, type, message });
     const hideToast = () => setToast({ ...toast, visible: false });
+
+    const handleArtigoChange = (index, field, value) => {
+        const novos = [...artigos];
+        novos[index][field] = value;
+        setArtigos(novos);
+    };
+
+    const adicionarArtigo = () => {
+        const ultimo = artigos[artigos.length - 1];
+        if (ultimo.link.trim() !== '') {
+            setArtigos([...artigos, { nome: '', link: '' }]);
+        }
+    };
+
+    const removerArtigo = (index) => {
+        setArtigos((prev) => prev.filter((_, i) => i !== index));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -108,6 +127,26 @@ const CreateAnimalForm = () => {
                     method: 'POST',
                     credentials: 'include',
                     body: formAudio,
+                });
+            }
+
+            for (const artigo of artigos) {
+                const nomeFinal = artigo.nome.trim() || artigo.link.trim();
+                const link = artigo.link.trim();
+
+                if (!link) continue;
+
+                await fetch('/api/artigos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        idAnimal: id,
+                        nome: nomeFinal,
+                        link,
+                    }),
                 });
             }
 
@@ -332,16 +371,49 @@ const CreateAnimalForm = () => {
                         onFileSelect={(file) => setSoundFile(file)}
                         resetTrigger={resetSoundKey}
                     />
+                    <h2>Video</h2>
+                    <TextInput
+                        id='video'
+                        label='Vídeo'
+                        value={formData.video}
+                        onChange={(e) => handleChange('video', e.target.value)}
+                        showError={errors.video}
+                    />
+                    <br />
                 </div>
-                <h2>Video</h2>
-                <TextInput
-                    id='video'
-                    label='Vídeo'
-                    value={formData.video}
-                    onChange={(e) => handleChange('video', e.target.value)}
-                    showError={errors.video}
-                />
-                <br />
+
+                <h2>Artigos</h2>
+                <div className='article-section'>
+                    {artigos.map((artigo, index) => (
+                        <div className='article-input'>
+                            <TextInput
+                                label='Nome'
+                                value={artigo.nome}
+                                size='small'
+                                onChange={(e) => handleArtigoChange(index, 'nome', e.target.value)}
+                            />
+                            <TextInput
+                                label='Link'
+                                value={artigo.link}
+                                size='small'
+                                onChange={(e) => handleArtigoChange(index, 'link', e.target.value)}
+                            />
+                            {index > 0 && (
+                                <Button type='button' onClick={() => removerArtigo(index)} className='remove-article'>
+                                    E
+                                </Button>
+                            )}
+                        </div>
+                    ))}
+
+                    {(artigos[artigos.length - 1].nome || artigos[artigos.length - 1].link) && (
+                        
+                        <Button type='button' onClick={adicionarArtigo} className='add-article'>
+                             +Adicionar artigo
+                        </Button>
+                    )}
+                </div>
+
                 <Button type='submit'>Enviar</Button>
             </form>
 

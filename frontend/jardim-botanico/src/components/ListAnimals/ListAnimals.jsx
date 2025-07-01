@@ -4,6 +4,7 @@ import Dropdown from '../Dropdowns/Dropdown';
 import Toast from '../Toast/Toast';
 import DeleteModal from '../Modal/DeleteModal';
 import Button from '../Button/Button';
+import TextInput from '../Inputs/TextInput/TextInput';
 import QrcodeDisplay from '../QrcodeDisplay/QrcodeDisplay';
 import { useAuth } from '../../context/AuthContext/AuthProvider';
 import './style.css';
@@ -18,7 +19,7 @@ export default function AnimalList() {
     const [modalVisible, setModalVisible] = useState(false);
     const [idToDelete, setIdToDelete] = useState(null);
     const [nameToDelete, setNameToDelete] = useState(null);
-
+    const [filtro, setFiltro] = useState('');
     const [animais, setAnimais] = useState([]);
     const navigate = useNavigate();
 
@@ -43,6 +44,12 @@ export default function AnimalList() {
 
         fetchAnimais();
     }, []);
+
+    const buscaFuzzy = (nome, filtro) => {
+        return nome.toLowerCase().includes(filtro.toLowerCase());
+    };
+
+    const animaisFiltrados = animais.filter((animal) => buscaFuzzy(animal.nomePopular, filtro));
 
     function cancelExcluir() {
         setModalVisible(false);
@@ -130,35 +137,57 @@ export default function AnimalList() {
 
     return (
         <div className='animal-list-container'>
-            <div className='button-section'>
-                {isAdmin && (
+            <div className='top-section'>
+                <div className='button-section'>
+                    {isAdmin && (
+                        <Button
+                            type='sumit'
+                            children='Gerenciar usuários'
+                            className='reset'
+                            onClick={() => handleUsers()}
+                        />
+                    )}
                     <Button
                         type='sumit'
-                        children='Gerenciar usuários'
+                        children='Logout'
                         className='reset'
-                        onClick={() => handleUsers()}
+                        onClick={() => logOut()}
                     />
-                )}
-                <Button type='sumit' children='Logout' className='reset' onClick={() => logOut()} />
-                <Button
-                    type='sumit'
-                    children='Criar animal'
-                    className='button-create'
-                    onClick={() => handleCreate()}
-                />
+                    <Button
+                        type='sumit'
+                        children='Criar animal'
+                        className='button-create'
+                        onClick={() => handleCreate()}
+                    />
+                </div>
+                <div className='search-section'>
+                    <TextInput
+                        type='text'
+                        className='search'
+                        style={{ margin: 0 }}
+                        value={filtro}
+                        onChange={(e) => {
+                            setFiltro(e.target.value);
+                        }}
+                        label='Buscar animal'
+                    />
+                </div>
             </div>
-            {animais.map((animal) => (
-                <Dropdown
-                    key={animal.id}
-                    type='animal'
-                    name={animal.nomePopular}
-                    onView={() => handleVisualizar(animal.id)}
-                    onDelete={() => confirmExcluir(animal.id, animal.nomePopular)}
-                    onEdit={() => handleEditar(animal.id)}
-                    onQr={() => handleShowQr(animal.qrcode)}
-                />
-            ))}
-            {animais.length == 0 && <p>Nenhum animal cadastrado</p>}
+            {animais
+                .filter((animal) => buscaFuzzy(animal.nomePopular, filtro))
+                .map((animal) => (
+                    <Dropdown
+                        key={animal.id}
+                        type='animal'
+                        name={animal.nomePopular}
+                        onView={() => handleVisualizar(animal.id)}
+                        onDelete={() => confirmExcluir(animal.id, animal.nomePopular)}
+                        onEdit={() => handleEditar(animal.id)}
+                        onQr={() => handleShowQr(animal.qrcode)}
+                    />
+                ))}
+            {animais.length == 0 ||
+                (animaisFiltrados.length === 0 && <p className='not-found'>Nenhum animal cadastrado</p>)}
             <Toast
                 type={toast.type}
                 message={toast.message}

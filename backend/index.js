@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const animalRoutes = require('./routes/animalRoutes');
 const authRoutes = require('./routes/authRoutes');
+const articleRoutes = require('./routes/articleRoutes');
 
 dotenv.config();
 
@@ -17,8 +18,10 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());
 
-app.use('/api/users', authRoutes);  // aqui o json parser está dentro do authRoutes
-app.use('/api/animais', animalRoutes); // aqui não tem json parser
+app.use('/api/users', authRoutes);  
+app.use('/api/animais', animalRoutes);
+app.use('/api/artigos', articleRoutes);
+
 
 app.use('/imagens', express.static('public/imagens'));
 app.use('/sons', express.static('public/sons'));

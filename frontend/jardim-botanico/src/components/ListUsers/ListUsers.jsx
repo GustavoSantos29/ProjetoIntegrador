@@ -3,6 +3,7 @@ import Dropdown from '../Dropdowns/Dropdown';
 import Button from '../Button/Button';
 import Toast from '../Toast/Toast';
 import DeleteModal from '../Modal/DeleteModal';
+import TextInput from '../Inputs/TextInput/TextInput';
 import { useAuth } from '../../context/AuthContext/AuthProvider';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -16,8 +17,8 @@ const ListUsers = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [idToDelete, setIdToDelete] = useState(null);
     const [nameToDelete, setNameToDelete] = useState(null);
-
     const [users, setUsers] = useState([]);
+    const [filtro, setFiltro] = useState('');
 
     useEffect(() => {
         async function fetchUsers() {
@@ -40,6 +41,12 @@ const ListUsers = () => {
 
         fetchUsers();
     }, []);
+
+    const buscaFuzzy = (nome, filtro) => {
+        return nome.toLowerCase().includes(filtro.toLowerCase());
+    };
+
+    const usuariosFiltrados = users.filter((user) => buscaFuzzy(user.nome, filtro));
 
     function cancelExcluir() {
         setModalVisible(false);
@@ -106,34 +113,56 @@ const ListUsers = () => {
 
     return (
         <div className='animal-list-container'>
-            <div className='button-section'>
-                {isAdmin && (
+            <div className='top-section'>
+                <div className='button-section'>
+                    {isAdmin && (
+                        <Button
+                            type='sumit'
+                            children='Gerenciar animais'
+                            className='reset'
+                            onClick={() => handleAnimals()}
+                        />
+                    )}
                     <Button
                         type='sumit'
-                        children='Gerenciar animais'
-                        className='button-create reset'
-                        onClick={() => handleAnimals()}
+                        children='Logout'
+                        className='reset'
+                        onClick={() => logOut()}
                     />
-                )}
-                <Button type='sumit' children='Logout' className='reset' onClick={() => logOut()} />
-                <Button
-                    type='sumit'
-                    children='Criar usuário'
-                    className='button-create'
-                    onClick={() => handleCreate()}
-                />
+                    <Button
+                        type='sumit'
+                        children='Criar usuário'
+                        className='button-create'
+                        onClick={() => handleCreate()}
+                    />
+                </div>
+                <div className='search-section'>
+                    <TextInput
+                        type='text'
+                        className='search'
+                        style={{ margin: 0 }}
+                        value={filtro}
+                        onChange={(e) => {
+                            setFiltro(e.target.value);
+                        }}
+                        label='Buscar usuários'
+                    />
+                </div>
             </div>
-            {users.map((user) => (
-                <Dropdown
-                    key={user.id}
-                    type='usuários'
-                    name={user.nome}
-                    onView={() => handleVisualizar(user.id)}
-                    onDelete={() => confirmExcluir(user.id, user.nome)}
-                    onEdit={() => handleEditar(user.id)}
-                />
-            ))}
-            {users.length == 0 && <p>Nenhum usuário cadastrado</p>}
+            {users
+                .filter((user) => buscaFuzzy(user.nome, filtro))
+                .map((user) => (
+                    <Dropdown
+                        key={user.id}
+                        type='usuários'
+                        name={user.nome}
+                        onView={() => handleVisualizar(user.id)}
+                        onDelete={() => confirmExcluir(user.id, user.nome)}
+                        onEdit={() => handleEditar(user.id)}
+                    />
+                ))}
+            {users.length == 0 ||
+                (usuariosFiltrados.length === 0 && <p className='not-found'>Nenhum usuário cadastrado</p>)}
             <Toast
                 type={toast.type}
                 message={toast.message}

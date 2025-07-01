@@ -46,7 +46,7 @@ p{
 }
 
 .page-container{
-  min-height: 100vh; /* Ocupa pelo menos a altura da tela */
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
 }
@@ -59,6 +59,9 @@ p{
   flex: 1;
 }
 
-
+.not-found{
+  color: var(--branco);
+  font-size: 2rem;
+}
 
 
