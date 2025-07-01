@@ -67,24 +67,39 @@ const ListUsers = () => {
         navigate('/animais');
     }
 
-    async function handleExcluir() {
-         const id = idToDelete;
-         setModalVisible(false);
-         setIdToDelete(null);
-         const token = sessionStorage.getItem('token');
-         try {
-          await fetch(`/api/users/${id}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-          }).catch(() => {});
-
-          setUsers((prev) => prev.filter((u) => u.id !== id));
-          showToast('success', 'Usuário excluído com sucesso!');
+    async function logOut() {
+        try {
+            await fetch(`/api/users/logout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+            navigate('/');
         } catch (error) {
-          showToast('warning', 'Erro ao excluir usuário!');
+            showToast('warning', 'Erro ao deslogar');
+        }
+    }
+
+    async function handleExcluir() {
+        const id = idToDelete;
+        setModalVisible(false);
+        setIdToDelete(null);
+        const token = sessionStorage.getItem('token');
+        try {
+            await fetch(`/api/users/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            }).catch(() => {});
+
+            setUsers((prev) => prev.filter((u) => u.id !== id));
+            showToast('success', 'Usuário excluído com sucesso!');
+        } catch (error) {
+            showToast('warning', 'Erro ao excluir usuário!');
         }
         console.log('exlcuir');
     }
@@ -100,12 +115,7 @@ const ListUsers = () => {
                         onClick={() => handleAnimals()}
                     />
                 )}
-                <Button
-                    type='sumit'
-                    children='Home Page'
-                    className='reset'
-                    onClick={() => navigate('/')}
-                />
+                <Button type='sumit' children='Logout' className='reset' onClick={() => logOut()} />
                 <Button
                     type='sumit'
                     children='Criar usuário'

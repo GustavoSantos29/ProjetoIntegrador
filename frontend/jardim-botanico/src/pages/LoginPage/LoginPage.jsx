@@ -8,7 +8,7 @@ import LoginForm from '../../components/Forms/Login/LoginForm.jsx'
 const LoginPage = () => {
     return (
         <div className='page-container'>
-                <HeaderAdmin />
+                <HeaderAdmin back={'/'}/>
         <div className="page-content">
                <LoginForm/>
             </div>

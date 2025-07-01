@@ -2,13 +2,19 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: var(--azul-ufsm);
-    padding: 3rem;
+    background-color: white;
+    padding: 5rem;
+    padding-top: 0;
     border-radius: 5px;
     width: 50vw;
     height: 30vh;
 }
 
-.user-view-container p{
-    color: var(--branco);
+.user-view-container strong{
+    color: var(--azul-ufsm);
+}
+
+.user-name{
+    text-align: center;
+    padding-bottom: 2rem;
 }

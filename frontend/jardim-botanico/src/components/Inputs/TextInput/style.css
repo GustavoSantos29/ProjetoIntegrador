@@ -86,3 +86,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.search{
+  background-color: var(--branco);
+}

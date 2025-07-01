@@ -21,6 +21,7 @@ const TextInput = ({
     onChange,
     showError = false,
     id = '',
+    className = '',
 }) => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -30,11 +31,11 @@ const TextInput = ({
     const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
     return (
-        <div className={`input-container ${size === 'big' ? 'big' : 'small'}`}>
+        <div className={`input-container ${size === 'big' ? 'big' : 'small'} `}>
             <input
                 type={inputType}
                 id={id}
-                className={`input ${showError ? 'input-error' : ''}`}
+                className={`input ${showError ? 'input-error' : ''} ${className === '' ? '' : className}`}
                 placeholder=' '
                 value={value}
                 onChange={onChange}

@@ -73,6 +73,20 @@ exports.getAllAnimais = async (req, res) => {
   }
 };
 
+exports.getAllNames = async (req, res) => {
+  try {
+    const animais = await prisma.animal.findMany({
+      select: {
+        id: true,
+        nomePopular: true,
+      },
+    });
+    res.json(animais);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 // Buscar um animal por ID
 exports.getAnimalById = async (req, res) => {
   try {

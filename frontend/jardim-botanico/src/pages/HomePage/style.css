@@ -1,0 +1,26 @@
+.home-text-display{
+    display: flex;
+    flex-direction: column;
+    width: 42vw;
+    height: 100%;
+    background-color: white;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 5px;
+}
+
+.home-title{
+    text-align: center;
+}
+
+.home-main{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.login{
+    align-self: end;
+    color: var(--azul-ufsm);
+    text-decoration: none;
+    padding-right: 1rem;
+}

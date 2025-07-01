@@ -67,6 +67,21 @@ export default function AnimalList() {
         navigate('/animal/create');
     }
 
+    async function logOut() {
+        try {
+            await fetch(`/api/users/logout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+            navigate('/');
+        } catch (error) {
+            showToast('warning', 'Erro ao deslogar');
+        }
+    }
+
     async function handleExcluir() {
         const id = idToDelete;
         setModalVisible(false);
@@ -124,12 +139,7 @@ export default function AnimalList() {
                         onClick={() => handleUsers()}
                     />
                 )}
-                    <Button
-                        type='sumit'
-                        children='Home Page'
-                        className='reset'
-                        onClick={() => navigate('/')}
-                    />
+                <Button type='sumit' children='Logout' className='reset' onClick={() => logOut()} />
                 <Button
                     type='sumit'
                     children='Criar animal'

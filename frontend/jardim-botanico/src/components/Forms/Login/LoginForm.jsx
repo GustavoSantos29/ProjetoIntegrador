@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../context/AuthContext/AuthProvider.jsx'; // importe seu contexto
+import { useAuth } from '../../../context/AuthContext/AuthProvider.jsx';
 import TextInput from '../../../components/Inputs/TextInput/TextInput';
 import Button from '../../../components/Button/Button';
 import './style.css';
@@ -10,7 +10,7 @@ function LoginForm() {
     const [senha, setSenha] = useState('');
     const navigate = useNavigate();
 
-    const { setIsAuthenticated, setIsAdmin } = useAuth(); // receba os setters do contexto
+    const { setIsAuthenticated, setIsAdmin } = useAuth(); 
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -27,13 +27,11 @@ function LoginForm() {
         const data = await res.json();
 
         if (res.ok) {
-            console.log('Login certo');
-            // Atualize o estado global
             setIsAuthenticated(true);
             setIsAdmin(data.admin);
 
-            sessionStorage.setItem('isAdmin', data.admin); // se ainda quiser guardar no sessionStorage
-            navigate('/');
+            sessionStorage.setItem('isAdmin', data.admin); 
+            navigate('/animais');
         } else {
             alert('Login falhou: ' + data.error);
         }

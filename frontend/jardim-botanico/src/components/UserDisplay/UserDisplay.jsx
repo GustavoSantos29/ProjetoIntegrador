@@ -1,7 +1,7 @@
 import React, { use } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './style.css'
+import './style.css';
 export default function UserDisplay({ id }) {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
@@ -37,9 +37,16 @@ export default function UserDisplay({ id }) {
                 return null;
             }
             return (
-                <p key={key}>
-                    <strong>{labels[key]}:</strong> {valor}
-                </p>
+                <>
+                    {key === 'nome' ?
+                        < h1 className='user-name'> { valor }</h1 >
+                            :
+                            <p key={key}>
+                            <strong>{labels[key]}:</strong> {valor}
+                        </p>
+                    }
+               
+                </>
             );
         });
     }
