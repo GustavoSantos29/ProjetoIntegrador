@@ -1,0 +1,45 @@
+.animal-search {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 42vw;
+    margin: 0 auto;
+    font-family: sans-serif;
+    min-height: 70vh;
+}
+
+.titulo {
+    color: var(--azul-ufsm);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.lista-animais {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-animal {
+    cursor: pointer;
+    padding: 0.8rem 10rem 0.8rem 0rem;
+    border-bottom: 2px solid var(--azul-ufsm);
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.item-animal:hover {
+    background-color: var(--branco);
+}
+
+
+.nenhum-resultado {
+    text-align: center;
+    color: #666;
+    margin-top: 1rem;
+}

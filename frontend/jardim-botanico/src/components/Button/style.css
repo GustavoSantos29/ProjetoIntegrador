@@ -18,12 +18,36 @@
 }
 
 .reset {
-    background-color: var(--branco);
-    color: var(--azul-ufsm);
+    background-color: var(--azul-alt);
+    color: var(--branco);
 }
 
 .button-create{
     position: relative;
-    min-height: 3.125rem;
-    margin-left: 56vw;
+    min-height: 3rem;
+
 }
+
+.load{
+margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--azul-ufsm);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-article{
+    width: 3rem;
+    margin-top: 1%;
+    background-color: var(--vermelho);
+}
+
+
+.add-article{
+    background-color: var(--azul-alt);
+    color: var(--branco);
+    margin-top: 1.3rem;
+}
+

@@ -1,27 +1,20 @@
 import React from 'react';
-import './style.css'; 
+import './style.css';
 /**
- * 
+ *
  * @param type submit | reset
  * @param onClick
  * @param children
  * @param className
- * @returns 
+ * @returns
  */
 
-const Button = ({ type = 'button',
-    onClick,
-    children,
-    className = '' }) => {
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={`custom-button ${className}`}
-    >
-      {children}
-    </button>
-  );
+const Button = ({ type = 'button', onClick, children, className = '' }) => {
+    return (
+        <button type={type} onClick={onClick} className={`custom-button ${className}`}>
+            {children}
+        </button>
+    );
 };
 
 export default Button;

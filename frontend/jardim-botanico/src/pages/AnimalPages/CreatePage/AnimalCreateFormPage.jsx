@@ -8,11 +8,9 @@ import Container from '../../../components/Container/Container.jsx'
 const AnimalCreateFormPage = () => {
     return (
         <div className='page-container'>
-             <HeaderAdmin back={'/'} />
+             <HeaderAdmin back={'/animais'} />
             <div className="page-content">
-
                 <Container children={<CreateAnimalForm/>} text='Criar animal'/>
-                
             </div>
             <FooterAdmin/>
         </div>

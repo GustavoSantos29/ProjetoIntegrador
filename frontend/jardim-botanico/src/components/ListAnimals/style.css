@@ -7,3 +7,21 @@
     gap: 2rem;
   }
   
+  .button-section{
+    display: flex;
+    align-self: flex-start;
+    gap: 1rem;
+  }
+
+  .search-section{
+  display: flex;
+   align-self: flex-end;
+   min-width: 20vw;
+  }
+
+  .top-section{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+  }

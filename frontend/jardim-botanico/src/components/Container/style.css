@@ -8,6 +8,7 @@
   justify-content: flex-start;
   background-color: var(--azul-ufsm);
   border-radius: 0.3125rem;
+  z-index: 9;
 }
 
 .container-tab {
@@ -25,6 +26,7 @@
   white-space: nowrap;
   z-index: 10;
 }
+
 
 .container-inner {
   width: 95%;

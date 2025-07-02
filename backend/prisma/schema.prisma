@@ -4,44 +4,53 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Animal {
-  id               Int     @id @default(autoincrement())
-  foto             String?
-  nomePopular      String
-  nomeCientifico   String
-  tamanho          String
-  dieta            String
-  comportamento    String
-  reproducao       String
-  habitat          String
-  descricao        String? 
-  reino            String
-  filo             String
-  classe           String
-  ordem            String
-  familia          String
-  genero           String
-  especie          String
-  subclasse        String?  
-  subordem         String?  
-  subfamilia       String?  
-  subgenero        String?  
-  audio            String?  
-  video            String?  
-  qrcode          String?
+  id             Int       @id @default(autoincrement())
+  foto           String?
+  nomePopular    String
+  nomeCientifico String
+  nAcervo        String?
+  tamanho        String?
+  porte          String?
+  dieta          String?
+  comportamento  String?
+  reproducao     String?
+  habitat        String?
+  descricao      String?
+  reino          String
+  filo           String
+  classe         String
+  ordem          String
+  familia        String
+  genero         String
+  especie        String
+  subclasse      String?
+  subordem       String?
+  subfamilia     String?
+  subgenero      String?
+  audio          String?
+  video          String?
+  qrcode         String?
+  artigos        Article[]
 }
 
-model Article{
-    id               Int     @id @default(autoincrement())
-    nome          String
-    link              String
+model Article {
+  id       Int    @id @default(autoincrement())
+  idAnimal Int
+  nome     String
+  link     String
+  animal   Animal @relation(fields: [idAnimal], references: [id])
 }
 
-model Users{
-    id               Int     @id @default(autoincrement())
-    email          String
-    senha         String
+model Users {
+  id         Int     @id @default(autoincrement())
+  nome       String
+  active     Boolean @default(true)
+  email      String  @unique
+  senha      String
+  admin      Boolean @default(false)
+  observacao String?
 }

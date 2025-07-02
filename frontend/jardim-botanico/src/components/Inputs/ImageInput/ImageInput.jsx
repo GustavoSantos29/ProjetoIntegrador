@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import './style.css';
 import ImageInputSVG from '../../../assets/svg/ImageInputSVG';
 import Pencil from '../../../assets/svg/Pencil';
-const ImageInput = ({ onFileSelect, showError, resetTrigger ,file}) => {
+
+const ImageInput = ({ onFileSelect, showError, resetTrigger, file }) => {
+  
   const [preview, setPreview] = useState(null);
   const inputRef = useRef(null);
 

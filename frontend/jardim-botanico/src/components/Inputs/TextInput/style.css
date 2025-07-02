@@ -2,6 +2,7 @@
   position: relative;
   margin: 0.625rem 0;
   max-width: 32.25rem;
+  min-height: 3rem;
 }
 
 .input-container.big,
@@ -72,4 +73,22 @@
   transition: all 0.2s ease;
   outline: 0.125rem solid red;
   outline-style: groove;
+}
+
+.eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search{
+  
+  background-color: var(--branco);
 }

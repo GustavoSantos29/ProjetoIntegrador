@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
+import OpenEye from '../../../assets/svg/OpenEye';
+import ClosedEye from '../../../assets/svg/ClosedEye';
 import './style.css';
 /** 
 @param label
@@ -10,27 +13,45 @@ import './style.css';
 **/
 
 const TextInput = ({
-  label = '',
-  required = false,
-  size = 'big',
-  value = ' ',
-  onChange,
-  showError = false,
-  id =''}) => {
-  
-  return (
-    <div className={`input-container ${size == 'big' ? 'big' : 'small'}`}>
-      <input type='text'
-        id={id}
-        className={`input ${showError? 'input-error' : ''}`}
-        placeholder=' '
-        value={value}
-        onChange={onChange}/>
-      <label className='label' htmlFor={id}>
-        {label} <span className={required ? 'required' : 'hide'}>*</span>
-      </label>
-      </div>
-  )
-}
+    style,
+    type = 'text',
+    label = '',
+    required = false,
+    size = 'big',
+    value = '',
+    onChange,
+    showError = false,
+    id = '',
+    className = '',
+}) => {
+    const [showPassword, setShowPassword] = useState(false);
 
-export default TextInput
+    const isPasswordField = type === 'password';
+    const inputType = isPasswordField && showPassword ? 'text' : type;
+
+    const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
+
+    return (
+        <div style={style} className={`input-container ${size === 'big' ? 'big' : 'small'}`}>
+            <input
+                type={inputType}
+                id={id}
+                className={`input ${showError ? 'input-error' : ''} ${className === '' ? '' : className}`}
+                placeholder=' '
+                value={value}
+                onChange={onChange}
+            />
+            <label className='label' htmlFor={id}>
+                {label} <span className={required ? 'required' : 'hide'}>*</span>
+            </label>
+
+            {isPasswordField && (
+                <div className='eye' onClick={togglePasswordVisibility}>
+                    {showPassword ? <OpenEye /> : <ClosedEye />}
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default TextInput;

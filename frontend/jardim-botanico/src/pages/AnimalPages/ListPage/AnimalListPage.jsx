@@ -7,12 +7,13 @@ import Container from '../../../components/Container/Container.jsx'
 
 const AnimalListPage = () => {
 
+    
     return (
         <div className='page-container'>
             <HeaderAdmin/>
             <div className="page-content">
+              
                 <Container children={<ListAnimals />} text='Animais'/>
-               
                 </div>
             <FooterAdmin/>
         </div>

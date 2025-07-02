@@ -3,7 +3,10 @@
     gap: 2rem;
 }
 
-.artcile-content{
+a,
+.article-list{
+    list-style: none;
     text-decoration: none;
     font-style: italic;
+    
 }
