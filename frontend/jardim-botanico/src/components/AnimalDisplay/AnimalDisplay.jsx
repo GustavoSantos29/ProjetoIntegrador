@@ -1,10 +1,11 @@
 // src/pages/AnimalView.jsx
-import { use, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ImageDisplay from '../ImageDisplay/ImageDisplay';
 import PlayAudio from '../PlayAudio/PlayAudio';
-import './style.css';
+import ArticleDisplay from '../ArticleDisplay/ArticleDislpay';
 import VideoDisplay from '../VideoDisplay/VideoDisplay';
+import './style.css';
 
 export default function AnimalDispay({ id }) {
     const navigate = useNavigate();
@@ -33,7 +34,9 @@ export default function AnimalDispay({ id }) {
         const labels = {
             nomePopular: 'Nome popular',
             nomeCientifico: 'Nome científico',
+            nAcervo: 'Número do acervo',
             tamanho: 'Tamanho',
+            porte: 'Porte',
             dieta: 'Dieta',
             comportamento: 'Comportamento',
             reproducao: 'Reprodução',
@@ -77,6 +80,7 @@ export default function AnimalDispay({ id }) {
                             {renderAnimalData(animal)}
                             <PlayAudio audio={animal.audio} />
                             <VideoDisplay link={animal.video} />
+                            <ArticleDisplay animalId={animal.id} />
                         </div>
                     </div>
                 </div>

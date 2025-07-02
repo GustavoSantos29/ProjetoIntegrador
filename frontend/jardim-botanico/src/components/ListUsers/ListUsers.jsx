@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ListUsers = () => {
-    const { isAdmin } = useAuth();
+    const { setIsAuthenticated, setIsAdmin } = useAuth();
     const [toast, setToast] = useState({ visible: false, type: '', message: '' });
     const showToast = (type, message) => setToast({ visible: true, type, message });
     const hideToast = () => setToast({ ...toast, visible: false });
@@ -83,6 +83,8 @@ const ListUsers = () => {
                 },
                 credentials: 'include',
             });
+            setIsAuthenticated(false);
+            setIsAdmin(false);
             navigate('/');
         } catch (error) {
             showToast('warning', 'Erro ao deslogar');
@@ -93,7 +95,6 @@ const ListUsers = () => {
         const id = idToDelete;
         setModalVisible(false);
         setIdToDelete(null);
-        const token = sessionStorage.getItem('token');
         try {
             await fetch(`/api/users/${id}`, {
                 method: 'DELETE',
@@ -115,20 +116,20 @@ const ListUsers = () => {
         <div className='animal-list-container'>
             <div className='top-section'>
                 <div className='button-section'>
-                    {isAdmin && (
-                        <Button
-                            type='sumit'
-                            children='Gerenciar animais'
-                            className='reset'
-                            onClick={() => handleAnimals()}
-                        />
-                    )}
                     <Button
                         type='sumit'
-                        children='Logout'
+                        children='Sair'
                         className='reset'
                         onClick={() => logOut()}
                     />
+
+                    <Button
+                        type='sumit'
+                        children='Gerenciar animais'
+                        className='reset'
+                        onClick={() => handleAnimals()}
+                    />
+
                     <Button
                         type='sumit'
                         children='Criar usuário'
@@ -162,7 +163,9 @@ const ListUsers = () => {
                     />
                 ))}
             {users.length == 0 ||
-                (usuariosFiltrados.length === 0 && <p className='not-found'>Nenhum usuário cadastrado</p>)}
+                (usuariosFiltrados.length === 0 && (
+                    <p className='not-found'>Nenhum usuário encontrado</p>
+                ))}
             <Toast
                 type={toast.type}
                 message={toast.message}

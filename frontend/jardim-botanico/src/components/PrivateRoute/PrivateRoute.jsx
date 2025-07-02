@@ -6,7 +6,6 @@ const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
 
   if (isAuthenticated === null) {
-    // Ainda verificando
     return <IsLoading/>;
   }
 

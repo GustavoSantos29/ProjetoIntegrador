@@ -5,6 +5,7 @@ import TextArea from '../../Inputs/TextArea/TextArea';
 import SoundInput from '../../Inputs/SoundInput/SoundInput';
 import Button from '../../Button/Button';
 import Toast from '../../Toast/Toast';
+import Trash from '../../../assets/svg/Trash';
 import '../style.css';
 
 const CreateAnimalForm = () => {
@@ -39,7 +40,7 @@ const CreateAnimalForm = () => {
         video: '',
     });
 
-    const [artigos, setArtigos] = useState([{ nome: '', link: '' }]);
+    const [articleFields, setArticleFields] = useState([{ nome: '', link: '' }]);
 
     const [errors, setErrors] = useState({});
 
@@ -52,20 +53,30 @@ const CreateAnimalForm = () => {
     const hideToast = () => setToast({ ...toast, visible: false });
 
     const handleArtigoChange = (index, field, value) => {
-        const novos = [...artigos];
+        const novos = [...articleFields];
         novos[index][field] = value;
-        setArtigos(novos);
+        setArticleFields(novos);
     };
 
-    const adicionarArtigo = () => {
-        const ultimo = artigos[artigos.length - 1];
-        if (ultimo.link.trim() !== '') {
-            setArtigos([...artigos, { nome: '', link: '' }]);
+    const addArticleField = () => {
+        if (articleFields.length === 0) {
+            setArticleFields([{ nome: '', link: '' }]);
+            return;
+        }
+
+        const last = articleFields[articleFields.length - 1];
+        const nomePreenchido = last.nome?.trim() !== '';
+        const linkPreenchido = last.link?.trim() !== '';
+
+        if (linkPreenchido && (nomePreenchido || last.nome === '')) {
+            setArticleFields([...articleFields, { nome: '', link: '' }]);
+        } else {
+            showToast('warning', 'Preencha corretamente o artigo atual antes de adicionar outro');
         }
     };
 
-    const removerArtigo = (index) => {
-        setArtigos((prev) => prev.filter((_, i) => i !== index));
+    const removeArticleField = (index) => {
+        setArticleFields((prev) => prev.filter((_, i) => i !== index));
     };
 
     const handleSubmit = async (e) => {
@@ -130,7 +141,7 @@ const CreateAnimalForm = () => {
                 });
             }
 
-            for (const artigo of artigos) {
+            for (const artigo of articleFields) {
                 const nomeFinal = artigo.nome.trim() || artigo.link.trim();
                 const link = artigo.link.trim();
 
@@ -384,34 +395,37 @@ const CreateAnimalForm = () => {
 
                 <h2>Artigos</h2>
                 <div className='article-section'>
-                    {artigos.map((artigo, index) => (
+                    {articleFields.map((artigo, index) => (
                         <div className='article-input'>
-                            <TextInput
-                                label='Nome'
-                                value={artigo.nome}
-                                size='small'
-                                onChange={(e) => handleArtigoChange(index, 'nome', e.target.value)}
-                            />
                             <TextInput
                                 label='Link'
                                 value={artigo.link}
                                 size='small'
                                 onChange={(e) => handleArtigoChange(index, 'link', e.target.value)}
                             />
+
+                            <TextInput
+                                label='Nome'
+                                value={artigo.nome}
+                                size='small'
+                                onChange={(e) => handleArtigoChange(index, 'nome', e.target.value)}
+                            />
+
                             {index > 0 && (
-                                <Button type='button' onClick={() => removerArtigo(index)} className='remove-article'>
-                                    E
+                                <Button
+                                    type='button'
+                                    onClick={() => removeArticleField(index)}
+                                    className='remove-article'
+                                >
+                                    <Trash/>
                                 </Button>
                             )}
                         </div>
                     ))}
 
-                    {(artigos[artigos.length - 1].nome || artigos[artigos.length - 1].link) && (
-                        
-                        <Button type='button' onClick={adicionarArtigo} className='add-article'>
-                             +Adicionar artigo
-                        </Button>
-                    )}
+                    <Button type='button' onClick={addArticleField} className='add-article'>
+                        +Adicionar artigo
+                    </Button>
                 </div>
 
                 <Button type='submit'>Enviar</Button>

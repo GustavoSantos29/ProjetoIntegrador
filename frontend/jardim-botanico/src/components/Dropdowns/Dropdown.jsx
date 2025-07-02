@@ -53,7 +53,7 @@ const Dropdown = ({ name, onView, onDelete, onEdit, onQr = false, type }) => {
                     <>
                         <hr />
                         <div className='dropdown-item' onClick={onQr}>
-                            <p>Visualizar QrCode</p>
+                            <p>Imprimir QrCode</p>
                             {<QrcodeIcon />}
                         </div>
                     </>

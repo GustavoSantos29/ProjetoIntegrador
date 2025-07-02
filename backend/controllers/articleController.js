@@ -1,7 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-
 exports.getArticlesByAnimal = async (req, res) => {
     const idAnimal = parseInt(req.params.idAnimal);
 
@@ -15,7 +14,6 @@ exports.getArticlesByAnimal = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
-
 
 exports.createArticle = async (req, res) => {
     const { idAnimal, nome, link } = req.body;
@@ -38,6 +36,19 @@ exports.createArticle = async (req, res) => {
     }
 };
 
+exports.updateArticle = async (req, res) => {
+    console.log(req.body);
+    try {
+       const updated = await prisma.article.update({
+            where: { id: parseInt(req.params.id) },
+            data: req.body,
+        });
+        res.json(updated);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
 exports.deleteArticle = async (req, res) => {
     const id = parseInt(req.params.id);
 
@@ -45,7 +56,7 @@ exports.deleteArticle = async (req, res) => {
         await prisma.article.delete({
             where: { id },
         });
-        res.status(204).send(); 
+        res.status(204).send();
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

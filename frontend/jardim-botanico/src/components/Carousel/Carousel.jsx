@@ -6,7 +6,7 @@ const Carousel = () => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [prevIndex, setPrevIndex] = useState(null);
-    const [direction, setDirection] = useState('right'); // ou 'left'
+    const [direction, setDirection] = useState('right');
 
     const timeoutRef = useRef(null);
 

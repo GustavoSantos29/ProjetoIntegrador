@@ -41,11 +41,13 @@ margin-top: 1rem;
 .remove-article{
     width: 3rem;
     margin-top: 1%;
-    background-color: var(--azul-alt);
+    background-color: var(--vermelho);
 }
+
 
 .add-article{
     background-color: var(--azul-alt);
     color: var(--branco);
     margin-top: 1.3rem;
 }
+

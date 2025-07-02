@@ -7,8 +7,9 @@
   --azul-focus: #b8dcf3;
   --verde-claro: rgba(144, 238, 144, 0.8);
   --verde-escuro: #1a5031;
-  --vermelho-claro: rgba(255, 99, 71, 0.8);
-  --vermelho-escuro: #790909;
+  --vermelho: #f70c0cf1;
+  --vermelho-escuro:#920707f1;
+  --vermelho-claro:#ef6161e4;
   --azul-alt: #0889d9;
   font-family:Arial, Helvetica, sans-serif;
   min-height: 100vh;

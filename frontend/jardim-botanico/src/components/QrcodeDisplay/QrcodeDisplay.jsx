@@ -16,7 +16,7 @@ const QRCodePrintable = ({ url, onClose }) => {
             join: true,
         });
 
-        qrContainerRef.current.innerHTML = qr.svg(); // insere o SVG no DOM
+        qrContainerRef.current.innerHTML = qr.svg(); 
     }, [url]);
 
     const handlePrint = () => {

@@ -27,13 +27,12 @@ exports.login = async (req, res) => {
     const user = await prisma.users.findUnique({ where: { email:email, active:true} });
     
     if (!user) {
-      return res.status(401).json({ error: 'Credenciais inválidas meu nobre' });
+      return res.status(401).json({ error: 'Credenciais inválidas' });
     }
     const hashedPassword = bcrypt.compareSync(senha, user.senha);
 
-    // senha sem criptografia apenas durante desenvolvimento
     if (!hashedPassword && senha != user.senha ) {
-      return res.status(401).json({ error: 'Credenciais inválidas meu nobre' });
+      return res.status(401).json({ error: 'Credenciais inválidas' });
     }
 
     const token = jwt.sign({ id: user.id, admin: user.admin }, SECRET, { expiresIn: '1h' });
@@ -114,10 +113,12 @@ exports.removeUser = async (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  res.clearCookie('token', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'Strict',
-  });
-  res.status(200).json({ message: 'Logout efetuado com sucesso' });
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Lax',
+        path: '/',
+    });
+
+    res.status(200).json({ message: 'Logout efetuado com sucesso' });
 };

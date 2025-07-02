@@ -10,6 +10,7 @@ import { useAuth } from '../../context/AuthContext/AuthProvider';
 import './style.css';
 
 export default function AnimalList() {
+    const { setIsAuthenticated, setIsAdmin } = useAuth();
     const { isAdmin } = useAuth();
     const [toast, setToast] = useState({ visible: false, type: '', message: '' });
     const showToast = (type, message) => setToast({ visible: true, type, message });
@@ -26,7 +27,6 @@ export default function AnimalList() {
     useEffect(() => {
         async function fetchAnimais() {
             try {
-                const token = sessionStorage.getItem('token');
                 const response = await fetch('/api/animais', {
                     headers: {
                         'Content-Type': 'application/json',
@@ -83,6 +83,8 @@ export default function AnimalList() {
                 },
                 credentials: 'include',
             });
+            setIsAuthenticated(false);
+            setIsAdmin(false);
             navigate('/');
         } catch (error) {
             showToast('warning', 'Erro ao deslogar');
@@ -139,6 +141,13 @@ export default function AnimalList() {
         <div className='animal-list-container'>
             <div className='top-section'>
                 <div className='button-section'>
+                    <Button
+                        type='sumit'
+                        children='Sair'
+                        className='reset'
+                        onClick={() => logOut()}
+                    />
+
                     {isAdmin && (
                         <Button
                             type='sumit'
@@ -147,12 +156,7 @@ export default function AnimalList() {
                             onClick={() => handleUsers()}
                         />
                     )}
-                    <Button
-                        type='sumit'
-                        children='Logout'
-                        className='reset'
-                        onClick={() => logOut()}
-                    />
+
                     <Button
                         type='sumit'
                         children='Criar animal'
@@ -187,7 +191,9 @@ export default function AnimalList() {
                     />
                 ))}
             {animais.length == 0 ||
-                (animaisFiltrados.length === 0 && <p className='not-found'>Nenhum animal cadastrado</p>)}
+                (animaisFiltrados.length === 0 && (
+                    <p className='not-found'>Nenhum animal encontrado</p>
+                ))}
             <Toast
                 type={toast.type}
                 message={toast.message}
